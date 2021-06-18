@@ -1,47 +1,19 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import {useDispatch} from "react-redux";
-import {logout} from "../../store/session";
+import { useHistory } from "react-router";
 
-const ProfileButton = ({user}) => {
-    const dispatch = useDispatch();
-    const [showMenu, setShowMenu] = useState(false);
+const ProfileButton = ({user}) => { //go to user profile page
+    const history = useHistory();
 
-    const openMenu = () => {
-        if (showMenu) return;
-        setShowMenu(true);
+    const goToProfile = () => {
+        history.push("/profile");
     }
-
-    useEffect(() => {
-        if (!showMenu) return;
-
-        const closeMenu = () => {
-          setShowMenu(false);
-        };
-
-        document.addEventListener('click', closeMenu);
-
-        return () => document.removeEventListener("click", closeMenu);
-    }, [showMenu]);
-
-    const logOutUser = (e) => {
-        e.preventDefault();
-        dispatch(logout());
-    };
 
     return (
         <>
-            <button onClick={openMenu}>
+            <button onClick={goToProfile}>
                 <i className="fas fa-user"></i>
             </button>
-            {showMenu && (
-                <ul className="profile-dropdown">
-                    <li>{user.username}</li>
-                    <li>{user.email}</li>
-                    <li>
-                        <button onClick={logOutUser}>Log Out</button>
-                    </li>
-                </ul>
-            )}
         </>
     );
 }
