@@ -1,5 +1,4 @@
 import React from "react";
-import {useDispatch} from "react-redux";
 import { useHistory } from "react-router";
 
 const ProfileButton = ({user}) => { //go to user profile page

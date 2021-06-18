@@ -1,4 +1,8 @@
 .signup-form {
     background-color: blue;
     color: white;
+    display: grid;
+    grid-template-columns: 500px;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    justify-content: center;
 }
