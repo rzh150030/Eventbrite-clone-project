@@ -23,6 +23,13 @@ export const login = (user) => async (dispatch) => { //thunk for logging in user
     return response;
 }
 
+export const restoreUser = () => async dispatch => { //thunk for retaining user session
+    const response = await csrfFetch('/api/session');
+    const data = await response.json();
+    dispatch(setUser(data.user));
+    return response;
+  };
+
 const initialState = { user: null };
 
 const sessionReducer = (state = initialState, action) => {
