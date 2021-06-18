@@ -18,9 +18,13 @@ export const login = (user) => async (dispatch) => { //thunk for logging in user
         method: "POST",
         body: JSON.stringify({credential, password})
     });
-    const data = await response.json();
-    dispatch(setUser(data.user));
-    return response;
+
+    if (response.ok){
+        const data = await response.json();
+        if (data.user)
+            dispatch(setUser(data.user));
+        return data;
+    }
 };
 
 export const restoreUser = () => async dispatch => { //thunk for retaining user session
@@ -44,6 +48,14 @@ export const signup = (user) => async (dispatch) => { //thunk for signing up
     dispatch(setUser(data.user));
     return response;
 };
+
+export const logout = () => async (dispatch) => { //thunk for logging out
+    const response = await csrfFetch("/api/session", {
+        method: "DELETE",
+    });
+    dispatch(removeUser());
+    return response;
+}
 
 const initialState = { user: null };
 
