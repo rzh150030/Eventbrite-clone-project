@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {useDispatch} from "react-redux";
-import logout from "../../store/session";
+import {logout} from "../../store/session";
 
 const ProfileButton = ({user}) => {
     const dispatch = useDispatch();
@@ -23,7 +23,7 @@ const ProfileButton = ({user}) => {
         return () => document.removeEventListener("click", closeMenu);
     }, [showMenu]);
 
-    const logout = (e) => {
+    const logOutUser = (e) => {
         e.preventDefault();
         dispatch(logout());
     };
@@ -38,7 +38,7 @@ const ProfileButton = ({user}) => {
                     <li>{user.username}</li>
                     <li>{user.email}</li>
                     <li>
-                        <button onClick={logout}>Log Out</button>
+                        <button onClick={logOutUser}>Log Out</button>
                     </li>
                 </ul>
             )}
