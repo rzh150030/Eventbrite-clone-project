@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { login } from "../../store/session";
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom";
+import './LoginForm.css';
 
 const LoginFormPage = () => {
     const dispatch = useDispatch();
@@ -25,29 +26,31 @@ const LoginFormPage = () => {
     }
 
     return (
-        <form onSubmit={onSubmit}>
-          <ul>
-            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-          </ul>
-          <label>
-            Username or Email
+        <form onSubmit={onSubmit} className="login-form">
+            <ul className="errors">
+                {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+            </ul>
+            <label className="label">
+                Username or Email
+            </label>
             <input
-              type="text"
-              value={credential}
-              onChange={(e) => setCredential(e.target.value)}
-              required
+                type="text"
+                value={credential}
+                onChange={(e) => setCredential(e.target.value)}
+                className="input"
+                required
             />
-          </label>
-          <label>
-            Password
+            <label className="label">
+                Password
+            </label>
             <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="input"
+                required
             />
-          </label>
-          <button type="submit">Log In</button>
+            <button type="submit" className="submit-button">Log In</button>
         </form>
       );
 }
