@@ -27,7 +27,7 @@ const Navigation = ({isLoaded}) => {
         sessionLinks = (
             <div className="session-links">
                 <NavLink to="/login">Log In</NavLink>
-                <NavLink to="/signup">Sign Up</NavLink>
+                <NavLink to="/signup" id="signup-link">Sign Up</NavLink>
             </div>
         );
     }

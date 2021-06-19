@@ -29,7 +29,7 @@ const LoginFormPage = () => {
             <ul className="errors">
                 {errors.map((error, idx) => <li key={idx}>{error}</li>)}
             </ul>
-            <label className="label">
+            <label className="labels">
                 Username or Email
             </label>
             <input
@@ -39,7 +39,7 @@ const LoginFormPage = () => {
                 className="input"
                 required
             />
-            <label className="label">
+            <label className="labels">
                 Password
             </label>
             <input
