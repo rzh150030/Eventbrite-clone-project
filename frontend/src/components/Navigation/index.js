@@ -25,21 +25,21 @@ const Navigation = ({isLoaded}) => {
     }
     else {
         sessionLinks = (
-            <>
+            <div className="session-links">
                 <NavLink to="/login">Log In</NavLink>
                 <NavLink to="/signup">Sign Up</NavLink>
-            </>
+            </div>
         );
     }
 
     return (
         <>
-            <ul className="navbar">
-                <li>
+            <div className="navbar">
+                <div className="home">
                     <NavLink exact to="/">Home</NavLink>
-                    {isLoaded && sessionLinks}
-                </li>
-            </ul>
+                </div>
+                {isLoaded && sessionLinks}
+            </div>
         </>
     );
 }
