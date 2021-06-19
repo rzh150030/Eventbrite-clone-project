@@ -33,7 +33,7 @@ const SignupFormPage = () => {
           <ul>
             {errors.map((error, idx) => <li key={idx}>{error}</li>)}
           </ul>
-          <label>
+          <label className="labels">
             Email
           </label>
           <input
@@ -42,7 +42,7 @@ const SignupFormPage = () => {
               onChange={(e) => setEmail(e.target.value)}
               required
             />
-          <label>
+          <label className="labels">
             Username
           </label>
           <input
@@ -51,7 +51,7 @@ const SignupFormPage = () => {
               onChange={(e) => setUsername(e.target.value)}
               required
             />
-          <label>
+          <label className="labels">
             Password
           </label>
             <input
@@ -60,7 +60,7 @@ const SignupFormPage = () => {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-          <label>
+          <label className="labels">
             Confirm Password
           </label>
             <input
@@ -69,7 +69,7 @@ const SignupFormPage = () => {
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
             />
-          <button type="submit">Sign Up</button>
+          <button type="submit" className="submit-button">Sign Up</button>
         </form>
     );
 }
