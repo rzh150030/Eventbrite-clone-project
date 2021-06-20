@@ -9,10 +9,14 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       career_fair_id: {
-        type: Sequelize.INTEGER
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {model: "Career_fairs"}
       },
       user_id: {
-        type: Sequelize.INTEGER
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {model: "Users"}
       },
       createdAt: {
         allowNull: false,
