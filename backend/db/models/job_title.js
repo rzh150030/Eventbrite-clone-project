@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     title: DataTypes.STRING
   }, {});
   Job_title.associate = function(models) {
-    // associations can be defined here
+    Job_title.belongsToMany(models.Career_fair, {through: "Event_title", otherKey: "fair_id", foreignKey: "job_title_id"})
   };
   return Job_title;
 };

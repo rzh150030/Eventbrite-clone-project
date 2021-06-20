@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     capacity: DataTypes.INTEGER
   }, {});
   Career_fair.associate = function(models) {
-    Career_fair.belongsToMany()
+    Career_fair.belongsToMany(models.Job_title, {through: "Event_title", otherKey: "job_title_id", foreignKey: "fair_id"})
   };
   return Career_fair;
 };
