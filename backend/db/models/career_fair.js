@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     capacity: DataTypes.INTEGER
   }, {});
   Career_fair.associate = function(models) {
-    // associations can be defined here
+    Career_fair.belongsToMany()
   };
   return Career_fair;
 };
