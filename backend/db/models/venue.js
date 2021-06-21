@@ -30,10 +30,10 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     zipCode: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [5, 32]
+        len: [3, 32]
       }
     },
   }, {});
