@@ -22,14 +22,16 @@ export const postEventFair = (event) => async dispatch => {
         body: JSON.stringify({name, date, capacity})
     });
 
-    const data = await response.json();
-    dispatch(loadEvent(data.event));
-    return response;
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(loadEvent(data.event));
+        return response;
+    }
 };
 
 const initialState = { event: null };
 
-const createFairReducer = (state = initialState, action) => {
+const fairReducer = (state = initialState, action) => {
     switch(action.type){
         case LOAD_EVENT:
             return {...state, event: action.event}
@@ -38,4 +40,4 @@ const createFairReducer = (state = initialState, action) => {
     }
 };
 
-export default createFairReducer;
+export default fairReducer;
