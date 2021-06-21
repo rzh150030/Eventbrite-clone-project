@@ -20,9 +20,20 @@ const validateFair = [
         .exists({Checkfalsy: true})
         .notEmpty()
         .withMessage("Please enter a capacity limit for the event"),
-]
+    handleValidationErrors,
+];
 
 //Create new event fair
-router.post("/", )
+router.post("/createEvent", validateFair, asyncHandler(async (req, res, next) => {
+    const {name, date, capacity} = req.body;
+
+    const event = await Career_fair.create({
+        name,
+        date,
+        capacity
+    });
+
+    return res.json({event});
+}));
 
 module.exports = router;
