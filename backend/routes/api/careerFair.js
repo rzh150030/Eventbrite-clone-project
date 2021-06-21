@@ -23,11 +23,14 @@ const validateFair = [
     handleValidationErrors,
 ];
 
-//Create new event fair
-router.post("/createEvent", validateFair, asyncHandler(async (req, res, next) => {
+//Create a new event fair
+router.post("/createEvent", validateFair, asyncHandler(async (req, res) => {
     const {name, date, capacity} = req.body;
+    const {userId} = req.session.auth;
 
     const event = await Career_fair.create({
+        host_id: userId,
+        venue_id: 2,
         name,
         date,
         capacity
@@ -35,5 +38,24 @@ router.post("/createEvent", validateFair, asyncHandler(async (req, res, next) =>
 
     return res.json({event});
 }));
+
+//Update an event fair
+router.put("/:id(\\d+)/updateEvent", validateFair, asyncHandler(async (req, res) => {
+    const {name, date, capacity} = req.body;
+    const id = req.params.id; //testing with id 2
+
+    const event = await Career_fair.findByPk(id)
+
+    event.name = name;
+    event.date = date;
+    event.capacity = capacity;
+    await event.save();
+
+    return res.json({event});
+}));
+
+//Get an event fair to read
+
+//Delete an event fair
 
 module.exports = router;
