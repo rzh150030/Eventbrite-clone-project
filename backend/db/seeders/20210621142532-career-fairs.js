@@ -9,7 +9,7 @@ module.exports = {
           {
             title: "Software Engineer",
             Event_titles: {
-              job_title_id: 4,
+              job_title_id: 4, //numbers will be replaced by corresponding id
               fair_id: 1
             }
           }
