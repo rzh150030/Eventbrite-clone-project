@@ -55,6 +55,13 @@ router.put("/:id(\\d+)/updateEvent", validateFair, asyncHandler(async (req, res)
 }));
 
 //Get an event fair to read
+router.get("/:id(\\d+)", asyncHandler(async (req,res) => {
+    const id = req.params.id;
+
+    const event = await Career_fair.findByPk(id);
+
+    res.json({event});
+}));
 
 //Delete an event fair
 
