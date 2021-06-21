@@ -24,7 +24,7 @@ app.use(helmet({
 }));
 
 // Set the _csrf token and create req.csrfToken method
-/* app.use(
+app.use(
     csurf({
       cookie: {
         secure: isProduction,
@@ -32,7 +32,7 @@ app.use(helmet({
         httpOnly: true,
       },
     })
-); */
+);
 app.use(routes);
 
 // Catch unhandled requests and forward to error handler.
