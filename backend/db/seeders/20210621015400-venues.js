@@ -8,14 +8,14 @@ module.exports = {
           address: "885 S Main St, Mansfield",
           city: "Mansfield",
           country: "US",
-          zipCode: 02048
+          zipCode: "02048"
         },
         {
           name: "George R. Brown Convention Center",
           address: "1001 Avenida De Las Americas",
           city: "Houston",
           country: "US",
-          zipCode: 77010
+          zipCode: "77010"
         },
         {
           name: "Leicester Careers Fair",
