@@ -3,9 +3,16 @@ module.exports = (sequelize, DataTypes) => {
   const Career_fair = sequelize.define('Career_fair', {
     host_id: DataTypes.INTEGER,
     venue_id: DataTypes.INTEGER,
-    name: DataTypes.STRING,
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
+    },
     date: DataTypes.DATE,
-    capacity: DataTypes.INTEGER
+    capacity: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
   }, {});
   Career_fair.associate = function(models) {
     Career_fair.belongsToMany(models.Job_title, {through: "Event_title", otherKey: "job_title_id", foreignKey: "fair_id"});
