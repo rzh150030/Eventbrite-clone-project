@@ -26,10 +26,10 @@ const validateFair = [
 //Create a new event fair
 router.post("/createEvent", validateFair, asyncHandler(async (req, res) => {
     const {name, date, capacity} = req.body;
-    const {userId} = req.session.auth;
+    // const {userId} = req.session.auth;
 
     const event = await Career_fair.create({
-        host_id: userId,
+        host_id: 1,
         venue_id: 2,
         name,
         date,
@@ -42,7 +42,7 @@ router.post("/createEvent", validateFair, asyncHandler(async (req, res) => {
 //Update an event fair
 router.put("/:id(\\d+)/updateEvent", validateFair, asyncHandler(async (req, res) => {
     const {name, date, capacity} = req.body;
-    const id = req.params.id; //testing with id 2
+    const id = req.params.id;
 
     const event = await Career_fair.findByPk(id)
 
@@ -55,7 +55,7 @@ router.put("/:id(\\d+)/updateEvent", validateFair, asyncHandler(async (req, res)
 }));
 
 //Get an event fair to read
-router.get("/:id(\\d+)", asyncHandler(async (req,res) => {
+router.get("/:id(\\d+)", asyncHandler(async (req, res) => {
     const id = req.params.id;
 
     const event = await Career_fair.findByPk(id);
@@ -64,5 +64,12 @@ router.get("/:id(\\d+)", asyncHandler(async (req,res) => {
 }));
 
 //Delete an event fair
+router.delete("/:id(\\d+)/deleteEvent", asyncHandler(async (req, res) => {
+    const id = req.params.id;
+
+    const event = await Career_fair.findByPk(id);
+    await event.destroy();
+    res.send("Event deleted");
+}));
 
 module.exports = router;
