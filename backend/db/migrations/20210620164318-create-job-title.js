@@ -10,7 +10,7 @@ module.exports = {
       },
       title: {
         allowNull: false,
-        type: Sequelize.STRING(500)
+        type: Sequelize.STRING(255)
       },
       createdAt: {
         allowNull: false,

@@ -10,15 +10,16 @@ module.exports = {
       },
       name: {
         allowNull: false,
-        type: Sequelize.STRING(300)
+        unique: true,
+        type: Sequelize.STRING(255)
       },
       address: {
         allowNull: false,
-        type: Sequelize.STRING(400)
+        type: Sequelize.STRING(255)
       },
       city: {
         allowNull: false,
-        type: Sequelize.STRING(200)
+        type: Sequelize.STRING(255)
       },
       country: {
         allowNull: false,
