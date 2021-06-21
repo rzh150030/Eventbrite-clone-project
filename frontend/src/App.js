@@ -5,6 +5,7 @@ import LoginFormPage from './components/LoginFormPage';
 import SignupFormPage from "./components/SignupFormPage";
 import Navigation from './components/Navigation';
 import ProfilePage from "./components/ProfilePage";
+import CreateFairPage from "./components/CreateFairPage";
 import * as sessionActions from "./store/session";
 
 function App() {
@@ -27,6 +28,9 @@ function App() {
           </Route>
           <Route path="/profile">
             <ProfilePage />
+          </Route>
+          <Route path="/careerfair">
+            <CreateFairPage />
           </Route>
         </Switch>
       )}
