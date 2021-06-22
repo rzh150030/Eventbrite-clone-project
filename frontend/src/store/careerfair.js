@@ -1,13 +1,13 @@
 import { csrfFetch } from './csrf';
 
-const CREATE_FORM = "careerfair/createFair";
+const CREATE_EVENT = "careerfair/createFair";
 const UPDATE_FORM = "careerfair/updateFair";
 const LOAD_EVENT = "careerfair/readFair";
 const DELETE_EVENT = "careerfair/deleteFair";
 const GRAB_VENUES = "careerfair/grabvenue"
 
-const loadEvent = (event) => ({
-    type: LOAD_EVENT,
+const makeEvent = (event) => ({
+    type: CREATE_EVENT,
     event
 });
 
@@ -30,7 +30,7 @@ export const postEventFair = (event) => async dispatch => { //Test thunk with wi
 
     if (response.ok) {
         const data = await response.json();
-        dispatch(loadEvent(data.event));
+        dispatch(makeEvent(data.event));
         return data;
     }
     //thunk works, make sure that the data is being put in correctly from component
@@ -49,7 +49,7 @@ const initialState = {};
 
 const fairReducer = (state = initialState, action) => {
     switch(action.type){
-        case LOAD_EVENT:
+        case CREATE_EVENT:
             return {...state, event: action.event}
         case GRAB_VENUES:
             let newState = {...state};

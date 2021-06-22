@@ -11,7 +11,7 @@ export default function CreateFairPage() {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
     const venueList = useSelector(state => Object.values(state.careerFair));
-    const [venue_id, setVenueId] = useState("");
+    const [venue, setVenue] = useState("");
     const [name, setName] = useState("");
     const [date, setDate] = useState(new Date());
     const [capacity, setCapacity] = useState("");
@@ -22,7 +22,7 @@ export default function CreateFairPage() {
 
     //onChange event handlers
     const addName = (e) => setName(e.target.value);
-    const addVenue = (e) => setVenueId(e.target.value);
+    const addVenue = (e) => setVenue(e.target.value);
     const addCapacity = (e) => setCapacity(e.target.value);
 
     //Grab venues from database
@@ -33,9 +33,14 @@ export default function CreateFairPage() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        let venueIds = {};
+        venueList.forEach(venue => { //Normalize venue ids
+            venueIds[venue.name] = venue.id;
+        });
+
         const event = {
             host_id: sessionUser.id,
-            venue_id,
+            venue_id: venueIds[venue],
             name,
             date,
             capacity
@@ -53,7 +58,7 @@ export default function CreateFairPage() {
                 <input type="text" placeholder="Event Name" value={name} onChange={addName} required />
                  <DatePicker selected={date} onChange={(date) => setDate(date)} showTimeSelect dateFormat="MMMM d, yyyy h:mm aa" timeIntervals={1}/>
                 <input type="text" placeholder="Capacity" value={capacity} onChange={addCapacity} required />
-                <select>
+                <select value={venue} onChange={addVenue}>
                     {venueList?.map(venue => {
                         return <option key={venue.id}>{venue.name}</option>
                     })}
