@@ -7,6 +7,7 @@ import Navigation from './components/Navigation';
 import ProfilePage from "./components/ProfilePage";
 import CreateFairPage from "./components/CreateFairPage";
 import HomePage from "./components/HomePage";
+import EventFairPage from "./components/EventFairPage";
 import * as sessionActions from "./store/session";
 
 function App() {
@@ -36,6 +37,9 @@ function App() {
           </Route>
           <Route path="/createfair">
             <CreateFairPage />
+          </Route>
+          <Route path="/event">
+            <EventFairPage />
           </Route>
         </Switch>
       )}

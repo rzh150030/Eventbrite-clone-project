@@ -48,7 +48,8 @@ export default function CreateFairPage() {
 
         let newEvent = await dispatch(postEventFair(event))
         if (newEvent) {
-            history.push(`/event/${newEvent.id}`);
+            // history.push(`/event/${newEvent.id}`);
+            history.push(`/`);
         }
     }
 
@@ -56,7 +57,7 @@ export default function CreateFairPage() {
      <div>
             <form onSubmit={handleSubmit} className="create-fair-form">
                 <input type="text" placeholder="Event Name" value={name} onChange={addName} required />
-                 <DatePicker selected={date} onChange={(date) => setDate(date)} showTimeSelect dateFormat="MMMM d, yyyy h:mm aa" timeIntervals={1}/>
+                <DatePicker selected={date} onChange={(date) => setDate(date)} showTimeSelect dateFormat="MMMM d, yyyy h:mm aa" timeIntervals={1}/>
                 <input type="text" placeholder="Capacity" value={capacity} onChange={addCapacity} required />
                 <select value={venue} onChange={addVenue}>
                     {venueList?.map(venue => {
