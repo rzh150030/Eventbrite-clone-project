@@ -30,10 +30,9 @@ export const postEventFair = (event) => async dispatch => { //Test thunk with wi
 
     if (response.ok) {
         const data = await response.json();
-        dispatch(makeEvent(data.event));
+        dispatch(makeEvent(data));
         return data;
     }
-    //thunk works, make sure that the data is being put in correctly from component
 };
 
 export const getVenues = () => async dispatch => { //get all venues for options
@@ -45,18 +44,20 @@ export const getVenues = () => async dispatch => { //get all venues for options
     }
 }
 
-const initialState = {};
+const initialState = {venues: {}, event: {}};
 
 const fairReducer = (state = initialState, action) => {
     switch(action.type){
         case CREATE_EVENT:
-            return {...state, event: action.event}
+            let newEventState = {...state};
+            newEventState.event[action.event.id] = action.event;
+            return newEventState;
         case GRAB_VENUES:
             let newState = {...state};
             action.venue.forEach((venue) => {
-                newState[venue.id] = venue
+                newState.venues[venue.id] = venue
             });
-            return newState
+            return newState;
         default:
             return state;
     }

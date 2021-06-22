@@ -10,8 +10,8 @@ export default function CreateFairPage() {
     let history = useHistory();
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
-    const venueList = useSelector(state => Object.values(state.careerFair));
-    const [venue, setVenue] = useState("");
+    const venueList = useSelector(state => Object.values(state.careerFair.venues));
+    const [venue, setVenue] = useState("The Xfinity Center"); //Needs to be hardcoded to avoid undefined venue
     const [name, setName] = useState("");
     const [date, setDate] = useState(new Date());
     const [capacity, setCapacity] = useState("");
@@ -26,10 +26,11 @@ export default function CreateFairPage() {
     const addCapacity = (e) => setCapacity(e.target.value);
 
     //Grab venues from database
-    useEffect(() => { //things that need to happen after the page has rendered
+    useEffect(() => { 
         dispatch(getVenues());
     }, []);
 
+    console.log(venue)
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -46,7 +47,7 @@ export default function CreateFairPage() {
             capacity
         }
 
-        let newEvent = await dispatch(postEventFair(event))
+        let newEvent = await dispatch(postEventFair(event));
         if (newEvent) {
             // history.push(`/event/${newEvent.id}`);
             history.push(`/`);
