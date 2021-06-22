@@ -21,7 +21,7 @@ export default function CreateFairPage() { //should only be accessible to logged
     //onChange event handlers
     const addName = (e) => setName(e.target.value);
     const addVenue = (e) => setVenueId(e.target.value);
-    const addDate = (e) => setDate();
+    const addCapacity = (e) => setCapacity(e.target.value);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -39,13 +39,13 @@ export default function CreateFairPage() { //should only be accessible to logged
             history.push(`/event/${newEvent.id}`);
         }
     }
-
+    console.log(date);
     return (
         <div>
             <form>
-                <input type="text" placeholder="Event Name" required>
-                </input>
-                <Calendar value={date} onChange={addDate}/>
+                <input type="text" placeholder="Event Name" value={name} onChange={addName} required />
+                <Calendar value={date} onChange={setDate}/>
+                <input type="text" placeholder="Capacity" value={capacity} onChange={addCapacity} required />
             </form>
         </div>
     )
