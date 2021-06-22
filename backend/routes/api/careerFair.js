@@ -26,10 +26,10 @@ const validateFair = [
 //Create a new event fair
 router.post("/createEvent", validateFair, requireAuth, asyncHandler(async (req, res) => {
     const {name, date, capacity} = req.body;
-    // const {userId} = req.session.auth;
+    const {userId} = req.session.auth;
 
     const event = await Career_fair.create({
-        host_id: 2,
+        host_id: userId,
         venue_id: 2,
         name,
         date,
