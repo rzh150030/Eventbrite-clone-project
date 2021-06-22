@@ -4,6 +4,7 @@ const CREATE_FORM = "careerfair/createFair";
 const UPDATE_FORM = "careerfair/updateFair";
 const LOAD_EVENT = "careerfair/readFair";
 const DELETE_EVENT = "careerfair/deleteFair";
+const GRAB_VENUES = "careerfair/grabvenue"
 
 const loadEvent = (event) => ({
     type: LOAD_EVENT,
@@ -13,6 +14,11 @@ const loadEvent = (event) => ({
 const deleteEvent = (event) => ({
     type: DELETE_EVENT
 });
+
+const grabVenues = (venue) => ({
+    type: GRAB_VENUES,
+    venue
+})
 
 //thunk for creating a new event fair
 export const postEventFair = (event) => async dispatch => { //Test thunk with window.store.dispatch(window.careerFairActions.postEventFair({host_id: 1, venue_id: 1, name: "west meets", date: "october 22 2021, 3:00 PM", capacity: 5}))
@@ -25,7 +31,7 @@ export const postEventFair = (event) => async dispatch => { //Test thunk with wi
     if (response.ok) {
         const data = await response.json();
         dispatch(loadEvent(data.event));
-        return response;
+        return data;
     }
     //thunk works, make sure that the data is being put in correctly from component
 };
@@ -35,16 +41,22 @@ export const getVenues = () => async dispatch => { //get all venues for options
 
     if (response.ok) {
         const data = await response.json();
-        return data;
+        dispatch(grabVenues(data));
     }
 }
 
-const initialState = { event: null };
+const initialState = {};
 
 const fairReducer = (state = initialState, action) => {
     switch(action.type){
         case LOAD_EVENT:
             return {...state, event: action.event}
+        case GRAB_VENUES:
+            let newState = {...state};
+            action.venue.forEach((venue) => {
+                newState[venue.id] = venue
+            });
+            return newState
         default:
             return state;
     }

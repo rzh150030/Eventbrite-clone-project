@@ -36,7 +36,7 @@ router.post("/createEvent", validateFair, requireAuth, asyncHandler(async (req, 
         capacity
     });
 
-    return res.json({event});
+    return res.json(event);
 }));
 
 //Update an event fair
@@ -51,7 +51,7 @@ router.put("/:id(\\d+)/updateEvent", validateFair, requireAuth, asyncHandler(asy
     event.capacity = capacity;
     await event.save();
 
-    return res.json({event});
+    return res.json(event);
 }));
 
 //Get an event fair to read
@@ -60,7 +60,7 @@ router.get("/:id(\\d+)", asyncHandler(async (req, res) => {
 
     const event = await Career_fair.findByPk(id);
 
-    res.json({event});
+    return res.json(event);
 }));
 
 //Delete an event fair
@@ -73,9 +73,10 @@ router.delete("/:id(\\d+)/deleteEvent", requireAuth, asyncHandler(async (req, re
 }));
 
 //Grab venues to select what venues to use
-router.get("/venues", /* requireAuth, */ asyncHandler(async (req, res) => {
+router.get("/venues", requireAuth, asyncHandler(async (req, res) => {
     const venues = await Venue.findAll();
-    res.json({venues});
+    const data = res.json(venues);
+    return data;
 }));
 
 module.exports = router;
