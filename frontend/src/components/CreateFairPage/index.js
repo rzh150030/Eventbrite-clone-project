@@ -4,10 +4,27 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import "./CreateFairPage.css";
 
-export default function CreateFairPage() {
+export default function CreateFairPage() { //should only be accessible to logged in users
     let history = useHistory();
+    const sessionUser = useSelector(state => state.session.user);
+
+    if (!sessionUser) {
+        history.push("/login")
+    }
+    else{
+        console.log(sessionUser.id)
+    }
+
+    const handleSubmit = () => {
+
+    }
 
     return (
-        <h1>Events stuff happens here</h1>
+        <div>
+            <form>
+                <input type="text" placeholder="Event Name" required>
+                </input>
+            </form>
+        </div>
     )
 }

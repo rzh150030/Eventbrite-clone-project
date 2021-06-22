@@ -38,6 +38,7 @@ const Navigation = ({isLoaded}) => {
                 <div className="home">
                     <NavLink exact to="/">Home</NavLink>
                 </div>
+                <NavLink to="/createfair">Create a Career Fair</NavLink>
                 {isLoaded && sessionLinks}
             </div>
         </>

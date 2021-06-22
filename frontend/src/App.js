@@ -6,6 +6,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import Navigation from './components/Navigation';
 import ProfilePage from "./components/ProfilePage";
 import CreateFairPage from "./components/CreateFairPage";
+import HomePage from "./components/HomePage";
 import * as sessionActions from "./store/session";
 
 function App() {
@@ -18,8 +19,12 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded}/>
+
       {isLoaded && (
         <Switch>
+          <Route exact path="/">
+            <HomePage />
+          </Route>
           <Route path="/login">
             <LoginFormPage />
           </Route>
@@ -29,7 +34,7 @@ function App() {
           <Route path="/profile">
             <ProfilePage />
           </Route>
-          <Route path="/careerfair">
+          <Route path="/createfair">
             <CreateFairPage />
           </Route>
         </Switch>

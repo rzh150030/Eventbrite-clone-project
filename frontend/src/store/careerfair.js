@@ -15,11 +15,11 @@ const deleteEvent = (event) => ({
 });
 
 //thunk for creating a new event fair
-export const postEventFair = (event) => async dispatch => {
-    const {name, date, capacity} = event;
+export const postEventFair = (event) => async dispatch => { //Test thunk with window.store.dispatch(window.careerFairActions.postEventFair({host_id: 1, venue_id: 1, name: "west meets", date: "october 22 2021, 3:00 PM", capacity: 5}))
+    const {host_id, venue_id, name, date, capacity} = event;
     const response = await csrfFetch("/api/careerFair/createEvent", {
         method: "POST",
-        body: JSON.stringify({name, date, capacity})
+        body: JSON.stringify({host_id, venue_id, name, date, capacity})
     });
 
     if (response.ok) {
@@ -27,6 +27,7 @@ export const postEventFair = (event) => async dispatch => {
         dispatch(loadEvent(data.event));
         return response;
     }
+    //thunk works, make sure that the data is being put in correctly
 };
 
 const initialState = { event: null };
