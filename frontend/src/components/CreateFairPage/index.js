@@ -45,14 +45,14 @@ export default function CreateFairPage() { //should only be accessible to logged
     }
     console.log(date);
     return (
-        <div>
+        <DatePicker selected={date} onChange={(date) => setDate(date)} />
+    )
+    {/*<div>
             <form>
                 <input type="text" placeholder="Event Name" value={name} onChange={addName} required />
-                {/* <Calendar value={date} onChange={setDate}/> */}
-                <DatePicker selected={date} onSelect={setDate} showTimeSelect dateFormat="MMMM d, yyyy h:mm aa"/>
-                {/* <input type="time" value={time} onChange={setTime} required /> */}
+                 <Calendar value={date} onChange={setDate}/>
                 <input type="text" placeholder="Capacity" value={capacity} onChange={addCapacity} required />
             </form>
-        </div>
-    )
+
+        </div>*/}
 }
