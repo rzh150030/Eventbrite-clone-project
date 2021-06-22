@@ -1,7 +1,7 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 const {requireAuth} = require("../../utils/auth");
-const {Career_fair} = require("../../db/models");
+const {Career_fair, Venue} = require("../../db/models");
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
@@ -25,12 +25,12 @@ const validateFair = [
 
 //Create a new event fair
 router.post("/createEvent", validateFair, requireAuth, asyncHandler(async (req, res) => {
-    const {name, date, capacity} = req.body;
-    const {userId} = req.session.auth;
+    const {host_id, venue_id, name, date, capacity} = req.body;
+    // const {userId} = req.session.auth;
 
     const event = await Career_fair.create({
-        host_id: userId,
-        venue_id: 2,
+        host_id,
+        venue_id,
         name,
         date,
         capacity
@@ -70,6 +70,12 @@ router.delete("/:id(\\d+)/deleteEvent", requireAuth, asyncHandler(async (req, re
     const event = await Career_fair.findByPk(id);
     await event.destroy();
     res.send("Event deleted");
+}));
+
+//Grab venues to select what venues to use
+router.get("/venues", /* requireAuth, */ asyncHandler(async (req, res) => {
+    const venues = await Venue.findAll();
+    res.json({venues});
 }));
 
 module.exports = router;

@@ -27,8 +27,17 @@ export const postEventFair = (event) => async dispatch => { //Test thunk with wi
         dispatch(loadEvent(data.event));
         return response;
     }
-    //thunk works, make sure that the data is being put in correctly
+    //thunk works, make sure that the data is being put in correctly from component
 };
+
+export const getVenues = () => async dispatch => { //get all venues for options
+    const response = await csrfFetch("/api/careerFair/venues");
+
+    if (response.ok) {
+        const data = await response.json();
+        return data;
+    }
+}
 
 const initialState = { event: null };
 
