@@ -8,6 +8,7 @@ export default function EventFairPage() {
     const {id} = useParams();
     const dispatch = useDispatch();
     const currentEvent = useSelector(state => state.careerFair.currentEvent);
+    const sessionUser = useSelector(state => state.session.user);
     let date;
 
     useEffect(() => {
@@ -21,6 +22,14 @@ export default function EventFairPage() {
     }
 
     let editDeleteButtons;
+    if (sessionUser && sessionUser.id === currentEvent.host_id) {
+        editDeleteButtons = (
+            <div>
+                <button>Edit</button>
+                <button>Delete</button>
+            </div>
+        )
+    }
 
 
     return (
@@ -37,6 +46,7 @@ export default function EventFairPage() {
                     {currentEvent?.Venue?.city}, {currentEvent?.Venue?.country}, {currentEvent?.Venue?.zipCode}
                 </p>
             </article>
+            {editDeleteButtons}
         </div>
     )
 }
