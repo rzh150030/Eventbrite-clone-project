@@ -26,7 +26,6 @@ const validateFair = [
 //Create a new event fair
 router.post("/createEvent", validateFair, requireAuth, asyncHandler(async (req, res) => {
     const {host_id, venue_id, name, date, capacity} = req.body;
-    // const {userId} = req.session.auth;
 
     const event = await Career_fair.create({
         host_id,
@@ -59,6 +58,13 @@ router.get("/:id(\\d+)", asyncHandler(async (req, res) => {
     const id = req.params.id;
 
     const event = await Career_fair.findByPk(id);
+
+    return res.json(event);
+}));
+
+//Get all event fair to read
+router.get("/allEvent", asyncHandler(async (req, res) => {
+    const event = await Career_fair.findAll();
 
     return res.json(event);
 }));
