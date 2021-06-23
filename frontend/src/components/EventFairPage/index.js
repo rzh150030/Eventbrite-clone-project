@@ -12,7 +12,7 @@ export default function EventFairPage() {
 
     useEffect(() => {
         dispatch(getEvent(id));
-    }, [dispatch]);
+    }, [dispatch, id]);
 
     const convertDate = () => {
         let time = Date.parse(currentEvent.date);
@@ -20,13 +20,22 @@ export default function EventFairPage() {
         return date.toString();
     }
 
+    let editDeleteButtons;
+
+
     return (
         <div>
             <article>
                 <h1>{currentEvent?.name}</h1>
-                <p>Hosted by: {currentEvent && currentEvent.User.username}</p>
-                <p>Date: {convertDate()}</p>
+                <p>Hosted by: {currentEvent?.User?.username}</p>
+                <p>Date and Time: {convertDate()}</p>
                 <p>Capacity: {currentEvent?.capacity} people</p>
+                <p>Location</p>
+                <p>
+                    {currentEvent?.Venue?.name}<br/>
+                    {currentEvent?.Venue?.address}<br/>
+                    {currentEvent?.Venue?.city}, {currentEvent?.Venue?.country}, {currentEvent?.Venue?.zipCode}
+                </p>
             </article>
         </div>
     )
