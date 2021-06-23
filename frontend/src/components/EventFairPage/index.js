@@ -23,10 +23,10 @@ export default function EventFairPage() {
     return (
         <div>
             <article>
-                <h1>{currentEvent.name}</h1>
-                <p>Hosted by: {currentEvent.User.username}</p>
+                <h1>{currentEvent?.name}</h1>
+                <p>Hosted by: {currentEvent && currentEvent.User.username}</p>
                 <p>Date: {convertDate()}</p>
-                <p>Capacity: {currentEvent.capacity} people</p>
+                <p>Capacity: {currentEvent?.capacity} people</p>
             </article>
         </div>
     )
