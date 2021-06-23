@@ -26,7 +26,7 @@ export default function CreateFairPage() {
     const addVenue = (e) => setVenue(e.target.value);
     const addCapacity = (e) => setCapacity(e.target.value);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         let venueIds = {};
@@ -43,13 +43,15 @@ export default function CreateFairPage() {
         };
 
         setErrors([]);
-        dispatch(postEventFair(event))
-        .catch(async (res) => {
+        let newEvent = await dispatch(postEventFair(event))
+        /* .catch(async (res) => {
             const data = await res.json()
             if (data && data.errors) setErrors(data.errors)
-        });
+        }); */
 
-        history.push("/");
+        if (newEvent) {
+            history.push(`/`);
+        }
     }
 
     return (

@@ -12,7 +12,7 @@ const makeEvent = (event) => ({
     event
 });
 
-const deleteEvent = (event) => ({
+const deleteEvent = () => ({
     type: DELETE_EVENT
 });
 
@@ -34,7 +34,7 @@ const getCurrentEvent = (event) => ({
 const editEvent = (event) => ({
     type: UPDATE_EVENT,
     event
-})
+});
 
 //thunk for creating a new event fair
 export const postEventFair = (event) => async dispatch => { //Test thunk with window.store.dispatch(window.careerFairActions.postEventFair({host_id: 1, venue_id: 1, name: "west meets", date: "october 22 2021, 3:00 PM", capacity: 5}))
@@ -71,6 +71,7 @@ export const updateEventFair = (updateEvent, eventId) => async dispatch => {
     if (response.ok) {
         const data = await response.json();
         dispatch(editEvent(data));
+        return data;
     }
 };
 
@@ -93,6 +94,18 @@ export const getEvent = (eventId) => async dispatch => {
         dispatch(getCurrentEvent(data));
     }
 };
+
+//thunk for deleting an event
+/* export const deleteEvent = (eventId) => async dispatch => {
+    const response = await csrfFetch(`/api/careerFair/${eventId}/deleteEvent`, {
+        method: "DELETE"
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(deleteEvent());
+    }
+}; */
 
 const initialState = {venues: {}, event: {}, currentEvent: {}};
 
@@ -121,6 +134,9 @@ const fairReducer = (state = initialState, action) => {
             updateEventState.event[action.event.id] = action.event;
             updateEventState.currentEvent = action.event;
             return updateEventState;
+        /* case DELETE_EVENT:
+            let deleteEventState = {...state};
+            return null; */
         default:
             return state;
     }
