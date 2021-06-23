@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {useParams} from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { updateEventFair } from "../../store/careerfair";
@@ -43,7 +43,7 @@ export default function EditFairPage() {
         };
 
         setErrors([]);
-        dispatch(updateEventFair(event))
+        dispatch(updateEventFair(event, id))
         .catch(async (res) => {
             const data = await res.json()
             if (data && data.errors) setErrors(data.errors)
