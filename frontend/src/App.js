@@ -38,9 +38,6 @@ function App() {
           <Route path="/createfair">
             <CreateFairPage />
           </Route>
-          <Route path="/event">
-            <EventFairPage />
-          </Route>
         </Switch>
       )}
     </>

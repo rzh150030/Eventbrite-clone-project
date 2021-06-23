@@ -30,7 +30,6 @@ export default function CreateFairPage() {
         dispatch(getVenues());
     }, []);
 
-    console.log(venue)
     const handleSubmit = async (e) => {
         e.preventDefault();
 
