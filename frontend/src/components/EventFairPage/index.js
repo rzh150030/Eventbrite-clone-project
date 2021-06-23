@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import {useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { getEvent } from "../../store/careerfair";
+import { getEvent, deleteEvent } from "../../store/careerfair";
 import "./EventFairPage.css";
 
 export default function EventFairPage() {
-    //must grab event from database and display contents
     const {id} = useParams();
     const history = useHistory();
     const dispatch = useDispatch();
@@ -23,8 +22,10 @@ export default function EventFairPage() {
         return date.toString();
     }
 
-    const deleteEvent = () => {
+    const deletion = async () => {
+        let deleted = await dispatch(deleteEvent(currentEvent.id));
 
+        if (deleted) history.push("/");
     }
 
     const editButton = () => {
@@ -37,7 +38,7 @@ export default function EventFairPage() {
         editDeleteButtons = (
             <div>
                 <button onClick={editButton} type="submit">Edit</button>
-                <button onClick={deleteEvent}>Delete</button>
+                <button onClick={deletion}>Delete</button>
             </div>
         )
     }

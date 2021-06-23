@@ -48,11 +48,8 @@ export default function EditFairPage() {
             const data = await res.json()
             if (data && data.errors) setErrors(data.errors)
         }); */
-        
-        if (newEvent) {
-            history.push(`/event/${id}`);
-        }
 
+        if (newEvent) history.push(`/event/${id}`);
     }
 
     return (

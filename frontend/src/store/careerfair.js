@@ -12,8 +12,9 @@ const makeEvent = (event) => ({
     event
 });
 
-const deleteEvent = () => ({
-    type: DELETE_EVENT
+const destroyEvent = (deleteId) => ({
+    type: DELETE_EVENT,
+    deleteId
 });
 
 const grabVenues = (venue) => ({
@@ -96,16 +97,17 @@ export const getEvent = (eventId) => async dispatch => {
 };
 
 //thunk for deleting an event
-/* export const deleteEvent = (eventId) => async dispatch => {
+export const deleteEvent = (eventId) => async dispatch => {
     const response = await csrfFetch(`/api/careerFair/${eventId}/deleteEvent`, {
         method: "DELETE"
     });
 
-    if (response.ok) {
+    if (response.ok) { //delete an event in event state and currentEvent
         const data = await response.json();
-        dispatch(deleteEvent());
+        dispatch(destroyEvent(eventId));
+        return data;
     }
-}; */
+};
 
 const initialState = {venues: {}, event: {}, currentEvent: {}};
 
@@ -134,9 +136,11 @@ const fairReducer = (state = initialState, action) => {
             updateEventState.event[action.event.id] = action.event;
             updateEventState.currentEvent = action.event;
             return updateEventState;
-        /* case DELETE_EVENT:
+        case DELETE_EVENT:
             let deleteEventState = {...state};
-            return null; */
+            delete deleteEventState.event[action.deleteId];
+            deleteEventState.currentEvent = {};
+            return deleteEventState;
         default:
             return state;
     }
