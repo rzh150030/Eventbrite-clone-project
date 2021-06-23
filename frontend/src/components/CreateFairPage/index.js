@@ -28,7 +28,7 @@ export default function CreateFairPage() {
     //Grab venues from database
     useEffect(() => {
         dispatch(getVenues());
-    }, []);
+    }, [dispatch]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
