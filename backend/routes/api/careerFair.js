@@ -43,7 +43,7 @@ router.put("/:id(\\d+)/updateEvent", validateFair, requireAuth, asyncHandler(asy
     const {venue_id, name, date, capacity} = req.body;
     const id = req.params.id;
 
-    const event = await Career_fair.findByPk(id, {include: [User, Venue]});
+    const event = await Career_fair.findByPk(id);
 
     event.venue_id = venue_id;
     event.name = name;
@@ -51,7 +51,8 @@ router.put("/:id(\\d+)/updateEvent", validateFair, requireAuth, asyncHandler(asy
     event.capacity = capacity;
     await event.save();
 
-    return res.json(event);
+    const updatedEvent = await Career_fair.findByPk(id, {include: [User, Venue]});
+    return res.json(updatedEvent);
 }));
 
 //Get an event fair to read
