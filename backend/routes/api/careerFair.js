@@ -77,14 +77,13 @@ router.delete("/:id(\\d+)/deleteEvent", requireAuth, asyncHandler(async (req, re
 
     const event = await Career_fair.findByPk(id);
     await event.destroy();
-    res.send("Event deleted");
+    return res.json("Event deleted");
 }));
 
 //Grab venues to select what venues to use
 router.get("/venues", requireAuth, asyncHandler(async (req, res) => {
     const venues = await Venue.findAll();
-    const data = res.json(venues);
-    return data;
+    return res.json(venues);
 }));
 
 module.exports = router;
