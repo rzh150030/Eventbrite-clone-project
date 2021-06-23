@@ -26,7 +26,7 @@ export default function CreateFairPage() {
     const addCapacity = (e) => setCapacity(e.target.value);
 
     //Grab venues from database
-    useEffect(() => { 
+    useEffect(() => {
         dispatch(getVenues());
     }, []);
 
@@ -49,7 +49,6 @@ export default function CreateFairPage() {
 
         let newEvent = await dispatch(postEventFair(event));
         if (newEvent) {
-            // history.push(`/event/${newEvent.id}`);
             history.push(`/`);
         }
     }
