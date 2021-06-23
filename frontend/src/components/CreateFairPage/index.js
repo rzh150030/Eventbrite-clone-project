@@ -15,6 +15,7 @@ export default function CreateFairPage() {
     const [name, setName] = useState("");
     const [date, setDate] = useState(new Date());
     const [capacity, setCapacity] = useState("");
+    const [errors, setErrors] = useState([]);
 
     if (!sessionUser) { //Only logged in users can access this page
         history.push("/login")
@@ -25,7 +26,7 @@ export default function CreateFairPage() {
     const addVenue = (e) => setVenue(e.target.value);
     const addCapacity = (e) => setCapacity(e.target.value);
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
 
         let venueIds = {};
@@ -41,15 +42,21 @@ export default function CreateFairPage() {
             capacity
         }
 
-        let newEvent = await dispatch(postEventFair(event));
-        if (newEvent) {
-            history.push(`/`);
-        }
+        dispatch(postEventFair(event))
+        .catch(async (res) => {
+            const data = await res.json()
+            if (data && data.errors) setErrors(data.errors)
+        })
+
+        history.push("/");
     }
 
     return (
      <div>
             <form onSubmit={handleSubmit} className="create-fair-form">
+                <ul>
+                    {errors.map((err, i) => <li key={i}>{err}</li>)}
+                </ul>
                 <input type="text" placeholder="Event Name" value={name} onChange={addName} required />
                 <DatePicker selected={date} onChange={(date) => setDate(date)} showTimeSelect dateFormat="MMMM d, yyyy h:mm aa" timeIntervals={1}/>
                 <input type="text" placeholder="Capacity" value={capacity} onChange={addCapacity} required />
