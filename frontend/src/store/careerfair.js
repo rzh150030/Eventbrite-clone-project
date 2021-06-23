@@ -121,7 +121,7 @@ export const hostEvents = (userId) => async dispatch => {
 
     if (response.ok) {
         const data = await response.json();
-        dispatch(getUserEvents(data))
+        dispatch(getUserEvents(data));
     }
 };
 
@@ -155,6 +155,7 @@ const fairReducer = (state = initialState, action) => {
         case DELETE_EVENT:
             let deleteEventState = {...state};
             delete deleteEventState.event[action.deleteId];
+            delete deleteEventState.userEvents[action.deleteId];
             deleteEventState.currentEvent = {};
             return deleteEventState;
         case USER_EVENTS:

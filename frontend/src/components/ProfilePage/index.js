@@ -7,7 +7,7 @@ const ProfilePage = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
-    const userEvents = useSelector(state => state.careerFair.userEvents);
+    const userEvents = useSelector(state => Object.values(state.careerFair.userEvents));
 
     useEffect(() => {
         dispatch(hostEvents(sessionUser.id));
@@ -19,7 +19,7 @@ const ProfilePage = () => {
         <div>
             <span>Events Hosted</span>
             <div>
-                {userEvents?.map(event => (
+                {userEvents && userEvents.map(event => (
                     <NavLink to={`/event/${event.id}`} key={event.id}>
                         {event.name}
                     </NavLink>
