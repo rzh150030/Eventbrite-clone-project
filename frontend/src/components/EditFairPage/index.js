@@ -1,7 +1,7 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {useParams} from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { updateEventFair } from "../../store/careerfair";
+import { updateEventFair, getEvent } from "../../store/careerfair";
 import { useHistory } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";

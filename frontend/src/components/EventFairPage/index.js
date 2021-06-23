@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {useParams} from "react-router-dom";
+import {useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { getEvent } from "../../store/careerfair";
 import "./EventFairPage.css";
@@ -7,6 +7,7 @@ import "./EventFairPage.css";
 export default function EventFairPage() {
     //must grab event from database and display contents
     const {id} = useParams();
+    const history = useHistory();
     const dispatch = useDispatch();
     const currentEvent = useSelector(state => state.careerFair.currentEvent);
     const sessionUser = useSelector(state => state.session.user);
@@ -26,13 +27,16 @@ export default function EventFairPage() {
 
     }
 
+    const editButton = () => {
+        let path = `/editfair/${currentEvent.id}`
+        history.push(path)
+    };
+
     let editDeleteButtons;
     if (sessionUser && sessionUser.id === currentEvent.host_id) {
         editDeleteButtons = (
             <div>
-                <form action={`/editfair/${currentEvent.id}`}>
-                    <input type="submit" value="Edit"/>
-                </form>
+                <button onClick={editButton} type="submit">Edit</button>
                 <button onClick={deleteEvent}>Delete</button>
             </div>
         )
