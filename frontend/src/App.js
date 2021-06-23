@@ -8,6 +8,7 @@ import Navigation from './components/Navigation';
 import ProfilePage from "./components/ProfilePage";
 import CreateFairPage from "./components/CreateFairPage";
 import HomePage from "./components/HomePage";
+import EditFairPage from "./components/EditFairPage";
 import EventFairPage from "./components/EventFairPage";
 import * as sessionActions from "./store/session";
 
@@ -44,6 +45,11 @@ function App() {
           {eventsList.map(event => (
             <Route path={`/event/:id`} key={event.id}>
               <EventFairPage />
+            </Route>
+          ))}
+          {eventsList.map(event => (
+            <Route path="/editfair/:id" key={event.id}>
+              <EditFairPage />
             </Route>
           ))}
         </Switch>

@@ -56,9 +56,9 @@ export const getVenues = () => async dispatch => { //get all venues for options
 };
 
 //thunk for updating an existing event fair
-// export const updateEventFair = () => async dispatch => {
-
-// };
+export const updateEventFair = () => async dispatch => {
+    
+};
 
 //thunk for getting all event fairs in database
 export const getEvents = () => async dispatch => {
