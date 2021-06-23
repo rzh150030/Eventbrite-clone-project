@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import { postEventFair, getVenues } from '../../store/careerfair';
+import React, {useState} from 'react';
+import { postEventFair } from '../../store/careerfair';
 import DatePicker from "react-datepicker";
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom";
@@ -24,11 +24,6 @@ export default function CreateFairPage() {
     const addName = (e) => setName(e.target.value);
     const addVenue = (e) => setVenue(e.target.value);
     const addCapacity = (e) => setCapacity(e.target.value);
-
-    //Grab venues from database
-    useEffect(() => {
-        dispatch(getVenues());
-    }, [dispatch]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
