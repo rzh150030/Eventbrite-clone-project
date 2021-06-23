@@ -80,7 +80,7 @@ export const getEvent = (eventId) => async dispatch => {
     }
 };
 
-const initialState = {venues: {}, event: {}};
+const initialState = {venues: {}, event: {}, currentEvent: {}};
 
 const fairReducer = (state = initialState, action) => {
     switch(action.type){

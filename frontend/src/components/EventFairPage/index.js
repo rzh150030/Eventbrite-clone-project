@@ -8,16 +8,26 @@ export default function EventFairPage() {
     const {id} = useParams();
     const dispatch = useDispatch();
     const currentEvent = useSelector(state => state.careerFair.currentEvent);
-    const [event, setEvent] = useState("");
+    let date;
 
     useEffect(() => {
         dispatch(getEvent(id));
     }, [dispatch]);
-    console.log(currentEvent);
+
+    const convertDate = () => {
+        let time = Date.parse(currentEvent.date);
+        date = new Date(time);
+        return date.toString();
+    }
 
     return (
         <div>
-            <h1>Name</h1>
+            <article>
+                <h1>{currentEvent.name}</h1>
+                <p>Hosted by: {currentEvent.User.username}</p>
+                <p>Date: {convertDate()}</p>
+                <p>Capacity: {currentEvent.capacity} people</p>
+            </article>
         </div>
     )
 }

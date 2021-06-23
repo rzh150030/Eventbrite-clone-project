@@ -1,7 +1,7 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 const {requireAuth} = require("../../utils/auth");
-const {Career_fair, Venue} = require("../../db/models");
+const {Career_fair, Venue, User} = require("../../db/models");
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
@@ -57,7 +57,7 @@ router.put("/:id(\\d+)/updateEvent", validateFair, requireAuth, asyncHandler(asy
 router.get("/:id(\\d+)", asyncHandler(async (req, res) => {
     const id = req.params.id;
 
-    const event = await Career_fair.findByPk(id);
+    const event = await Career_fair.findByPk(id, {include: [User, Venue]});
 
     return res.json(event);
 }));
