@@ -17,7 +17,7 @@ export default function HomePage() {
         <div>
             {eventsList.map(event => (
                 <NavLink to={`/event/${event.id}`}>
-                    <EventFairPage />
+                    {event.name}
                 </NavLink>
             ))}
         </div>
