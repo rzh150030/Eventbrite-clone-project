@@ -26,6 +26,11 @@ const getAllEvents = (events) => ({
     events
 });
 
+const getCurrentEvent = (event) => ({
+    type: LOAD_EVENT,
+    event
+});
+
 //thunk for creating a new event fair
 export const postEventFair = (event) => async dispatch => { //Test thunk with window.store.dispatch(window.careerFairActions.postEventFair({host_id: 1, venue_id: 1, name: "west meets", date: "october 22 2021, 3:00 PM", capacity: 5}))
     const {host_id, venue_id, name, date, capacity} = event;
@@ -65,6 +70,16 @@ export const getEvents = () => async dispatch => {
     }
 };
 
+//thunk for getting a single event
+export const getEvent = (eventId) => async dispatch => {
+    const response = await csrfFetch(`/api/careerFair/${eventId}`);
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(getCurrentEvent(data));
+    }
+};
+
 const initialState = {venues: {}, event: {}};
 
 const fairReducer = (state = initialState, action) => {
@@ -85,6 +100,8 @@ const fairReducer = (state = initialState, action) => {
                 allEventState.event[event.id] = event
             });
             return allEventState;
+        case LOAD_EVENT:
+            return {...state, currentEvent: action.event}
         default:
             return state;
     }

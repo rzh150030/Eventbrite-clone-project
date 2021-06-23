@@ -42,11 +42,12 @@ export default function CreateFairPage() {
             capacity
         }
 
+        setErrors([]);
         dispatch(postEventFair(event))
         .catch(async (res) => {
             const data = await res.json()
             if (data && data.errors) setErrors(data.errors)
-        })
+        });
 
         history.push("/");
     }

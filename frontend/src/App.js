@@ -42,7 +42,7 @@ function App() {
             <CreateFairPage />
           </Route>
           {eventsList.map(event => (
-            <Route path={`/event/${event.id}`} key={event.id}>
+            <Route path={`/event/:id`} key={event.id}>
               <EventFairPage />
             </Route>
           ))}
