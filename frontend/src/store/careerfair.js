@@ -5,7 +5,8 @@ const UPDATE_EVENT = "careerfair/updateFair";
 const LOAD_EVENT = "careerfair/loadOneFair";
 const DELETE_EVENT = "careerfair/deleteFair";
 const GRAB_VENUES = "careerfair/grabvenue";
-const LOAD_ALL_EVENT = "careerfair/loadFairs"
+const LOAD_ALL_EVENT = "careerfair/loadFairs";
+const USER_EVENTS = "careerfair/hostFairs";
 
 const makeEvent = (event) => ({
     type: CREATE_EVENT,
@@ -36,6 +37,11 @@ const editEvent = (event) => ({
     type: UPDATE_EVENT,
     event
 });
+
+const getUserEvents = (userHost) => ({
+    type: USER_EVENTS,
+    userHost
+})
 
 //thunk for creating a new event fair
 export const postEventFair = (event) => async dispatch => { //Test thunk with window.store.dispatch(window.careerFairActions.postEventFair({host_id: 1, venue_id: 1, name: "west meets", date: "october 22 2021, 3:00 PM", capacity: 5}))
@@ -109,7 +115,17 @@ export const deleteEvent = (eventId) => async dispatch => {
     }
 };
 
-const initialState = {venues: {}, event: {}, currentEvent: {}};
+//thunk for getting user's events
+export const hostEvents = (userId) => async dispatch => {
+    const response = await csrfFetch(`/api/careerFair/${userId}/hostEvent`);
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(getUserEvents(data))
+    }
+};
+
+const initialState = {venues: {}, event: {}, currentEvent: {}, userEvents: {}};
 
 const fairReducer = (state = initialState, action) => {
     switch(action.type){
@@ -141,6 +157,12 @@ const fairReducer = (state = initialState, action) => {
             delete deleteEventState.event[action.deleteId];
             deleteEventState.currentEvent = {};
             return deleteEventState;
+        case USER_EVENTS:
+            let hostEventState = {...state};
+            action.userHost.Career_fairs.forEach((event) => {
+                hostEventState.userEvents[event.id] = event;
+            });
+            return hostEventState;
         default:
             return state;
     }

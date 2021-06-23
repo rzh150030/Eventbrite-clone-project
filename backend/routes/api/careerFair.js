@@ -86,4 +86,13 @@ router.get("/venues", requireAuth, asyncHandler(async (req, res) => {
     return res.json(venues);
 }));
 
+//Get events associated with the user
+router.get("/:id(\\d+)/hostEvent", requireAuth, asyncHandler(async (req, res) => {
+    const id = req.params.id;
+
+    const user = await User.findByPk(id, {include: Career_fair});
+
+    return res.json(user);
+}));
+
 module.exports = router;
