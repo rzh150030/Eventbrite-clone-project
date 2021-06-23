@@ -3,7 +3,7 @@ import { postEventFair } from '../../store/careerfair';
 import DatePicker from "react-datepicker";
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom";
-import "react-datepicker/dist/react-datepicker.css"
+import "react-datepicker/dist/react-datepicker.css";
 import "./CreateFairPage.css";
 
 export default function CreateFairPage() {
@@ -40,7 +40,7 @@ export default function CreateFairPage() {
             name,
             date,
             capacity
-        }
+        };
 
         setErrors([]);
         dispatch(postEventFair(event))

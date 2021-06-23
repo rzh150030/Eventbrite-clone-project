@@ -1,7 +1,7 @@
 import { csrfFetch } from './csrf';
 
 const CREATE_EVENT = "careerfair/createFair";
-const UPDATE_FORM = "careerfair/updateFair";
+const UPDATE_EVENT = "careerfair/updateFair";
 const LOAD_EVENT = "careerfair/loadOneFair";
 const DELETE_EVENT = "careerfair/deleteFair";
 const GRAB_VENUES = "careerfair/grabvenue";
@@ -31,6 +31,11 @@ const getCurrentEvent = (event) => ({
     event
 });
 
+const editEvent = (event) => ({
+    type: UPDATE_EVENT,
+    event
+})
+
 //thunk for creating a new event fair
 export const postEventFair = (event) => async dispatch => { //Test thunk with window.store.dispatch(window.careerFairActions.postEventFair({host_id: 1, venue_id: 1, name: "west meets", date: "october 22 2021, 3:00 PM", capacity: 5}))
     const {host_id, venue_id, name, date, capacity} = event;
@@ -56,8 +61,17 @@ export const getVenues = () => async dispatch => { //get all venues for options
 };
 
 //thunk for updating an existing event fair
-export const updateEventFair = () => async dispatch => {
-    
+export const updateEventFair = (updateEvent, eventId) => async dispatch => {
+    const {venue_id, name, date, capacity} = updateEvent;
+    const response = await csrfFetch(`/api/careerFair/${eventId}/updateEvent`, {
+        method: "PUT",
+        body: JSON.stringify({venue_id, name, date, capacity})
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(editEvent(data));
+    }
 };
 
 //thunk for getting all event fairs in database
@@ -101,7 +115,12 @@ const fairReducer = (state = initialState, action) => {
             });
             return allEventState;
         case LOAD_EVENT:
-            return {...state, currentEvent: action.event}
+            return {...state, currentEvent: action.event};
+        case UPDATE_EVENT:
+            let updateEventState = {...state};
+            updateEventState.event[action.event.id] = action.event;
+            updateEventState.currentEvent = action.event;
+            return updateEventState;
         default:
             return state;
     }

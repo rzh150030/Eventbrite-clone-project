@@ -40,11 +40,12 @@ router.post("/createEvent", validateFair, requireAuth, asyncHandler(async (req, 
 
 //Update an event fair
 router.put("/:id(\\d+)/updateEvent", validateFair, requireAuth, asyncHandler(async (req, res) => {
-    const {name, date, capacity} = req.body;
+    const {venue_id, name, date, capacity} = req.body;
     const id = req.params.id;
 
     const event = await Career_fair.findByPk(id)
 
+    event.venue_id = venue_id;
     event.name = name;
     event.date = date;
     event.capacity = capacity;
