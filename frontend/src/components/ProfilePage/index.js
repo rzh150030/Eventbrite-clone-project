@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Redirect, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { hostEvents } from '../../store/careerfair';
+import "./ProfilePage.css";
 
 const ProfilePage = () => {
     const dispatch = useDispatch();
@@ -12,16 +13,29 @@ const ProfilePage = () => {
         dispatch(hostEvents(sessionUser.id));
     }, [dispatch, sessionUser.id]);
 
+    const convertDate = (date) => {
+        let time = Date.parse(date);
+        let formatDate = new Date(time);
+        return formatDate.toString();
+    }
+
     if (!sessionUser) return <Redirect to="/"/>;
 
     return (
         <div>
-            <span>Events Hosted</span>
-            <div>
+            <div className="user-events-label">
+                <span>Events Hosted</span>
+                <span>Registered Events</span>
+            </div>
+            {/* <span className="user-events-label">Registered Events</span> */}
+            <div className="hosted-event-container">
                 {userEvents && userEvents.map(event => (
-                    <NavLink to={`/event/${event.id}`} key={event.id}>
-                        {event.name}
-                    </NavLink>
+                    <div className="host-event-container" key={event.id}>
+                        <NavLink to={`/event/${event.id}`} className="hosted-event-links">
+                            {event.name}
+                        </NavLink>
+                        <span>{convertDate(event.date)}</span>
+                    </div>
                 ))}
             </div>
         </div>
