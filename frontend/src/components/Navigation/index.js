@@ -28,15 +28,15 @@ const Navigation = ({isLoaded}) => {
         sessionLinks = (
             <>
                 <ProfileButton user={sessionUser}/>
-                <button onClick={logOutUser} classname="session-button">Log Out</button>
+                <button onClick={logOutUser} className="session-button">Log Out</button>
             </>
         );
     }
     else {
         sessionLinks = (
             <>
-                <button onClick={loginButton} classname="session-button">Log In</button>
-                <button onClick={signupButton} classname="session-button">Sign Up</button>
+                <button onClick={loginButton} className="session-button">Log In</button>
+                <button onClick={signupButton} className="session-button">Sign Up</button>
             </>
         );
     }

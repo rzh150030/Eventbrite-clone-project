@@ -60,8 +60,8 @@ const LoginFormPage = () => {
                 className="input"
                 required
             />
-            <button type="submit" className="submit-button">Log In</button>
-            <button type="submit" className="submit-button" onClick={demoLogin}>Demo User</button>
+            <button type="submit" className="submit-login">Log In</button>
+            <button type="submit" className="submit-login" onClick={demoLogin}>Demo User</button>
         </form>
       );
 }
