@@ -45,7 +45,7 @@ export default function EventFairPage() {
 
     return (
         <div>
-            <article>
+            <article className="event-article">
                 <h1>{currentEvent?.name}</h1>
                 <p>Hosted by: {currentEvent?.User?.username}</p>
                 <p>Date and Time: {convertDate()}</p>
