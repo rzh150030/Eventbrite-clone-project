@@ -29,8 +29,7 @@ export default function EventFairPage() {
     }
 
     const editButton = () => {
-        let path = `/editfair/${currentEvent.id}`
-        history.push(path)
+        history.push(`/editfair/${currentEvent.id}`);
     };
 
     let editDeleteButtons;

@@ -1,44 +1,53 @@
 import ProfileButton from "./ProfileButton";
 import React from 'react';
 import { useSelector } from 'react-redux';
-import {NavLink} from "react-router-dom";
+import {NavLink, useHistory} from "react-router-dom";
 import {logout} from "../../store/session";
 import {useDispatch} from "react-redux";
 import './Navigation.css';
 
 const Navigation = ({isLoaded}) => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const sessionUser = useSelector(state => state.session.user);
 
     const logOutUser = () => {
         dispatch(logout());
     }
 
+    const loginButton = () => {
+        history.push("/login");
+    };
+
+    const signupButton = () => {
+        history.push("/signup");
+    };
+
     let sessionLinks;
     if (sessionUser) {
         sessionLinks = (
             <>
                 <ProfileButton user={sessionUser}/>
-                <button onClick={logOutUser}>Log Out</button>
+                <button onClick={logOutUser} classname="session-button">Log Out</button>
             </>
         );
     }
     else {
         sessionLinks = (
-            <div className="session-links">
-                <NavLink to="/login">Log In</NavLink>
-                <NavLink to="/signup" id="signup-link">Sign Up</NavLink>
-            </div>
+            <>
+                <button onClick={loginButton} classname="session-button">Log In</button>
+                <button onClick={signupButton} classname="session-button">Sign Up</button>
+            </>
         );
     }
 
     return (
         <>
             <div className="navbar">
-                <div className="home">
-                    <NavLink exact to="/">Home</NavLink>
+                <div>
+                    <NavLink exact to="/" className="home">IT Fairs for Hires</NavLink>
                 </div>
-                <NavLink to="/createfair">Create a Career Fair</NavLink>
+                <NavLink to="/createfair" className="create-fair">Create a Career Fair</NavLink>
                 {isLoaded && sessionLinks}
             </div>
         </>
