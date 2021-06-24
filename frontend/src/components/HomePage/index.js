@@ -31,7 +31,7 @@ export default function HomePage() {
                             {event.name}
                         </NavLink>
                         <span>{convertDate(event.date)}</span>
-                        <i className="fas fa-user-tie" >{" " + event.User.username}</i>
+                        <i className="fas fa-user-tie" >{" " + event.User?.username}</i>
                     </div>
                 ))}
             </div>

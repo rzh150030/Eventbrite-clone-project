@@ -54,7 +54,7 @@ export default function EditFairPage() {
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="edit-fair-form">
                 <ul>
                     {errors.map((err, i) => <li key={i}>{err}</li>)}
                 </ul>

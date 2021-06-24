@@ -46,7 +46,7 @@ export default function CreateFairPage() {
         let newEvent = await dispatch(postEventFair(event))
         /* .catch(async (res) => {
             const data = await res.json()
-            if (data && data.errors) setErrors(data.errors)
+            if (data && data.errors) setErrors(data.errors) //need to deal with client side error handling
         }); */
 
         if (newEvent) {
@@ -60,15 +60,15 @@ export default function CreateFairPage() {
                 <ul>
                     {errors.map((err, i) => <li key={i}>{err}</li>)}
                 </ul>
-                <input type="text" placeholder="Event Name" value={name} onChange={addName} required />
-                <DatePicker selected={date} onChange={(date) => setDate(date)} showTimeSelect dateFormat="MMMM d, yyyy h:mm aa" timeIntervals={1}/>
-                <input type="text" placeholder="Capacity" value={capacity} onChange={addCapacity} required />
-                <select value={venue} onChange={addVenue}>
+                <input type="text" placeholder="Event Name" value={name} onChange={addName} className="create-entry" required />
+                <input type="text" placeholder="Capacity" value={capacity} onChange={addCapacity} className="create-entry" required />
+                <select value={venue} onChange={addVenue} className="venue-select">
                     {venueList?.map(venue => {
                         return <option key={venue.id}>{venue.name}</option>
                     })}
                 </select>
-                <button type="submit">Submit Career Fair</button>
+                <DatePicker selected={date} onChange={(date) => setDate(date)} showTimeSelect dateFormat="MMMM d, yyyy h:mm aa" timeIntervals={1} className="calendar"/>
+                <button type="submit" className="submit-new-fair">Submit Career Fair</button>
             </form>
         </div>
     )
