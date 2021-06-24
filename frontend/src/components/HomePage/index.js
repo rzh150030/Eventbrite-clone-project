@@ -13,16 +13,26 @@ export default function HomePage() {
         dispatch(getVenues());
     }, [dispatch]);
 
+    const convertDate = (date) => {
+        let time = Date.parse(date);
+        let formatDate = new Date(time);
+        return formatDate.toString();
+    }
+
     return (
-        <div>
-            <div>
+        <div className="Home-page">
+            <div className="welcome-message-container">
                 <span className="Welcome-message">Welcome to IT Fairs for Hires</span>
             </div>
             <div className="home-content-container">
                 {eventsList.map(event => (
-                    <NavLink to={`/event/${event.id}`} key={event.id} className="home-items">
-                        {event.name}
-                    </NavLink>
+                    <div className="event-container" key={event.id}>
+                        <NavLink to={`/event/${event.id}`} className="home-items">
+                            {event.name}
+                        </NavLink>
+                        <span>{convertDate(event.date)}</span>
+                        <i className="fas fa-user-tie" >{event.User.username}</i>
+                    </div>
                 ))}
             </div>
         </div>

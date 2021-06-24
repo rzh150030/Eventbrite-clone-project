@@ -1,5 +1,11 @@
 .home-content-container {
     display: grid;
-    grid-template-columns: 20%, 20%, 20%, 20%, 20%;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-rows: auto;
 }
 
+.home-items {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 400;
+    font-size: 20px;
+}
