@@ -44,7 +44,7 @@ const getUserEvents = (userHost) => ({
 })
 
 //thunk for creating a new event fair
-export const postEventFair = (event) => async dispatch => { //Test thunk with window.store.dispatch(window.careerFairActions.postEventFair({host_id: 1, venue_id: 1, name: "west meets", date: "october 22 2021, 3:00 PM", capacity: 5}))
+export const postEventFair = (event) => async dispatch => { 
     const {host_id, venue_id, name, date, capacity} = event;
     const response = await csrfFetch("/api/careerFair/createEvent", {
         method: "POST",
@@ -132,7 +132,6 @@ const fairReducer = (state = initialState, action) => {
         case CREATE_EVENT:
             let newEventState = {...state};
             newEventState.event[action.event.id] = action.event;
-            // newEventState.userEvents[action.event.id] = action.event;
             return newEventState;
         case GRAB_VENUES:
             let newState = {...state};
@@ -161,7 +160,7 @@ const fairReducer = (state = initialState, action) => {
             return deleteEventState;
         case USER_EVENTS:
             let hostEventState = {...state};
-            action.userHost.Career_fairs.forEach((event) => { //grabs user's events
+            action.userHost.Career_fairs.forEach((event) => {
                 hostEventState.userEvents[event.id] = event;
             });
             return hostEventState;
