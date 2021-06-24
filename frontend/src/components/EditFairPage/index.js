@@ -5,6 +5,7 @@ import { updateEventFair } from "../../store/careerfair";
 import { useHistory } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import "./EditFairPage.css";
 
 export default function EditFairPage() {
     const {id} = useParams();
@@ -58,15 +59,15 @@ export default function EditFairPage() {
                 <ul>
                     {errors.map((err, i) => <li key={i}>{err}</li>)}
                 </ul>
-                <input type="text" placeholder="Event Name" value={name} onChange={changeName} required />
-                <DatePicker selected={date} onChange={(date) => setDate(date)} showTimeSelect dateFormat="MMMM d, yyyy h:mm aa" timeIntervals={1}/>
-                <input type="text" placeholder="Capacity" value={capacity} onChange={changeCapacity} required />
-                <select value={venue} onChange={changeVenue}>
+                <input type="text" placeholder="Event Name" value={name} onChange={changeName} className="edit-entry" required />
+                <input type="text" placeholder="Capacity" value={capacity} onChange={changeCapacity} className="edit-entry" required />
+                <select value={venue} onChange={changeVenue} className="venue-select">
                     {venueList?.map(venue => {
                         return <option key={venue.id}>{venue.name}</option>
                     })}
                 </select>
-                <button type="submit">Submit Career Fair</button>
+                <DatePicker selected={date} onChange={(date) => setDate(date)} showTimeSelect dateFormat="MMMM d, yyyy h:mm aa" timeIntervals={1} className="calendar"/>
+                <button type="submit" className="submit-edit-fair">Edit Career Fair</button>
             </form>
         </div>
     )
