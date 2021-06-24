@@ -9,7 +9,7 @@ export default function HomePage() {
     const dispatch = useDispatch();
     const eventsList = useSelector(state => Object.values(state.careerFair.event));
 
-    useEffect(() => {
+    useEffect(() => { //grab venues for create fair page
         dispatch(getVenues());
     }, [dispatch]);
 

@@ -44,7 +44,7 @@ const getUserEvents = (userHost) => ({
 })
 
 //thunk for creating a new event fair
-export const postEventFair = (event) => async dispatch => { //Test thunk with window.store.dispatch(window.careerFairActions.postEventFair({host_id: 1, venue_id: 1, name: "west meets", date: "october 22 2021, 3:00 PM", capacity: 5}))
+export const postEventFair = (event) => async dispatch => { 
     const {host_id, venue_id, name, date, capacity} = event;
     const response = await csrfFetch("/api/careerFair/createEvent", {
         method: "POST",

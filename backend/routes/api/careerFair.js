@@ -35,7 +35,9 @@ router.post("/createEvent", validateFair, requireAuth, asyncHandler(async (req, 
         capacity
     });
 
-    return res.json(event);
+    const newEvent = await Career_fair.findByPk(event.id, {include: User});
+
+    return res.json(newEvent);
 }));
 
 //Update an event fair
