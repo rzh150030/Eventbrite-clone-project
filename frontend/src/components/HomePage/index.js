@@ -27,11 +27,11 @@ export default function HomePage() {
             <div className="home-content-container">
                 {eventsList.map(event => (
                     <div className="event-container" key={event.id}>
-                        <NavLink to={`/event/${event.id}`} className="home-items">
+                        <NavLink to={`/event/${event.id}`} className="home-links">
                             {event.name}
                         </NavLink>
                         <span>{convertDate(event.date)}</span>
-                        <i className="fas fa-user-tie" >{event.User.username}</i>
+                        <i className="fas fa-user-tie" >{" " + event.User.username}</i>
                     </div>
                 ))}
             </div>
