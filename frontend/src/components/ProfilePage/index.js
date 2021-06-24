@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { Redirect, useParams, useHistory, NavLink } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Redirect, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { hostEvents } from '../../store/careerfair';
 
 const ProfilePage = () => {
-    const history = useHistory();
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
     const userEvents = useSelector(state => Object.values(state.careerFair.userEvents));
 
     useEffect(() => {
         dispatch(hostEvents(sessionUser.id));
-    }, [dispatch]);
+    }, [dispatch, sessionUser.id]);
 
     if (!sessionUser) return <Redirect to="/"/>;
 
