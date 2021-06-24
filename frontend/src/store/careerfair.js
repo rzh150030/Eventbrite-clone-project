@@ -132,6 +132,7 @@ const fairReducer = (state = initialState, action) => {
         case CREATE_EVENT:
             let newEventState = {...state};
             newEventState.event[action.event.id] = action.event;
+            // newEventState.userEvents[action.event.id] = action.event;
             return newEventState;
         case GRAB_VENUES:
             let newState = {...state};
@@ -160,7 +161,7 @@ const fairReducer = (state = initialState, action) => {
             return deleteEventState;
         case USER_EVENTS:
             let hostEventState = {...state};
-            action.userHost.Career_fairs.forEach((event) => {
+            action.userHost.Career_fairs.forEach((event) => { //grabs user's events
                 hostEventState.userEvents[event.id] = event;
             });
             return hostEventState;
