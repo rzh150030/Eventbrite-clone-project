@@ -17,11 +17,10 @@
     margin-bottom: 10px;
 }
 
-.submit-button {
-    display: block;
+.submit-login {
     margin-top: 20px;
     margin-bottom: 20px;
-    width: 30px;
+    width: 47%;
     height: 40px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }

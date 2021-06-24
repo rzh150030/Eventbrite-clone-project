@@ -1,0 +1,31 @@
+.edit-fair-form {
+    display: grid;
+    grid-template-rows: 2fr 2fr 2fr 2fr 2fr 2fr;
+    row-gap: 10px;
+    justify-items: center;
+    justify-content: center;
+    background-color: #b34700;
+    padding-bottom: 100px;
+}
+
+.edit-entry {
+    width: 234px;
+    height: 30px;
+}
+
+.venue-select {
+    height: 30px;
+}
+
+.calendar {
+    width: 234px;
+    height: 30px;
+}
+
+.submit-edit-fair {
+    width: 200px;
+    height: 50px;
+    color: #00802b;
+    font-weight: bold;
+    font-size: large;
+}

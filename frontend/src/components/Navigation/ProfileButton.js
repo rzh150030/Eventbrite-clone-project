@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router";
 
-const ProfileButton = ({user}) => { //go to user profile page
+const ProfileButton = () => { //go to user profile page
     const history = useHistory();
 
     const goToProfile = () => {
