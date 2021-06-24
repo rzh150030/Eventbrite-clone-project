@@ -20,7 +20,7 @@ export default function HomePage() {
     }
 
     return (
-        <div className="Home-page">
+        <div className="home-page">
             <div className="welcome-message-container">
                 <span className="Welcome-message">Welcome to IT Fairs for Hires</span>
             </div>

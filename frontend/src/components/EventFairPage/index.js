@@ -3,6 +3,7 @@ import {useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { getEvent, deleteEvent } from "../../store/careerfair";
 import "./EventFairPage.css";
+import careerFair from "../../images/RMI-career-fair-0618.jpg";
 
 export default function EventFairPage() {
     const {id} = useParams();
@@ -44,7 +45,7 @@ export default function EventFairPage() {
 
 
     return (
-        <div>
+        <div className="event-page">
             <article className="event-article">
                 <h1>{currentEvent?.name}</h1>
                 <p>Hosted by: {currentEvent?.User?.username}</p>
@@ -56,8 +57,9 @@ export default function EventFairPage() {
                     {currentEvent?.Venue?.address}<br/>
                     {currentEvent?.Venue?.city}, {currentEvent?.Venue?.country}, {currentEvent?.Venue?.zipCode}
                 </p>
+                {editDeleteButtons}
             </article>
-            {editDeleteButtons}
+            <img src={careerFair}/>
         </div>
     )
 }
