@@ -43,6 +43,10 @@ const initialState = {registrations: {}};
 
 const registerReducer = (state = initialState, action) => {
     switch (action.type) {
+        case REGISTER_EVENT:
+            let newRegisterState = {...state};
+            newRegisterState.registrations[action.registration.id] = action.registration;
+            return newRegisterState;
         default:
             return state;
     }
