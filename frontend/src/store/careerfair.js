@@ -44,7 +44,7 @@ const getUserEvents = (userHost) => ({
 })
 
 //thunk for creating a new event fair
-export const postEventFair = (event) => async dispatch => { 
+export const postEventFair = (event) => async dispatch => {
     const {host_id, venue_id, name, date, capacity} = event;
     const response = await csrfFetch("/api/careerFair/createEvent", {
         method: "POST",
@@ -128,7 +128,7 @@ export const hostEvents = (userId) => async dispatch => {
 const initialState = {venues: {}, event: {}, currentEvent: {}, userEvents: {}};
 
 const fairReducer = (state = initialState, action) => {
-    switch(action.type){
+    switch(action.type) {
         case CREATE_EVENT:
             let newEventState = {...state};
             newEventState.event[action.event.id] = action.event;
