@@ -1,5 +1,7 @@
 import { csrfFetch } from './csrf';
 
+const REGISTER_EVENT = "registerFair/registerEvent";
+
 const initialState = {registrations: {}};
 
 const registerReducer = (state = initialState, action) => {
