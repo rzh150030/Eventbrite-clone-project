@@ -13,8 +13,9 @@ export default function EventFairPage() {
     const currentEvent = useSelector(state => state.careerFair.currentEvent);
     const sessionUser = useSelector(state => state.session.user);
     const userRegistrations = useSelector(state => Object.values(state.registerFair.registrations));
-    const currentRegistration = userRegistrations.find(element => element.user_id === id);
-    const [registered, setRegistered] = useState(currentRegistration); //see if user registered for event
+    const currentRegistration = userRegistrations.find(element => (element.user_id === sessionUser.id
+        && element.career_fair_id === Number(id))); //see if current event is registered with current user
+    const [registered, setRegistered] = useState(currentRegistration); //behave like a switch for register button
     let date;
     console.log(currentRegistration + "=====")
     console.log(userRegistrations + "++++++")
