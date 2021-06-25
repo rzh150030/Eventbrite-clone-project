@@ -64,20 +64,22 @@ export default function EventFairPage() {
 
     const unregister= async (e) => {
         e.preventDefault();
+
         //find the registration that matches user_id and career_fair_id
+
 
         registered = false;
     };
 
     let registerButton;
-    if (sessionUser && !registered) {
+    if (sessionUser && !registered && sessionUser.id !== currentEvent.host_id) {
         registerButton = (
             <div className="register-button">
                 <button onClick={register} type="submit">Register</button>
             </div>
         )
     }
-    else if (sessionUser && registered) {
+    else if (sessionUser && registered && sessionUser.id !== currentEvent.host_id) {
         registerButton = (
             <div className="unregister-button">
                 <button onClick={unregister} type="submit">Unregister</button>
