@@ -55,6 +55,12 @@ const registerReducer = (state = initialState, action) => {
             let newRegisterState = {...state};
             newRegisterState.registrations[action.registration.id] = action.registration;
             return newRegisterState;
+        case LOAD_REGISTERS:
+            let allRegisterState = {...state};
+            action.userRegisters.Registration.forEach(event => {
+                allRegisterState.registrations[event.id] = event;
+            });
+            return allRegisterState;
         default:
             return state;
     }

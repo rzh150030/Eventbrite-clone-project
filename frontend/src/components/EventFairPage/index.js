@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import {useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { getEvent, deleteEvent } from "../../store/careerfair";
+import { registerEvent, registeredEves } from "../../store/registration";
 import "./EventFairPage.css";
 import careerFair from "../../images/RMI-career-fair-0618.jpg";
 
@@ -11,6 +12,7 @@ export default function EventFairPage() {
     const dispatch = useDispatch();
     const currentEvent = useSelector(state => state.careerFair.currentEvent);
     const sessionUser = useSelector(state => state.session.user);
+    const userRegisters = useSelector(state => state.registerFair.registrations);
     const [registered, setRegistered] = useState(false);
     let date;
 
@@ -46,7 +48,7 @@ export default function EventFairPage() {
 
     const register = (e) => {
         e.preventDefault();
-        
+
     }
 
     const unregister= (e) => {
