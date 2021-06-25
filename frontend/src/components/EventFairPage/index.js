@@ -16,7 +16,7 @@ export default function EventFairPage() {
 
     useEffect(() => { //get event from database to render
         dispatch(getEvent(id));
-    }, [dispatch, id]);
+    }, [dispatch, id, registered]);
 
     const convertDate = () => {
         let time = Date.parse(currentEvent.date);
@@ -49,11 +49,22 @@ export default function EventFairPage() {
         
     }
 
+    const unregister= (e) => {
+        e.preventDefault();
+    }
+
     let registerButton;
     if (sessionUser && !registered) {
         registerButton = (
             <div>
                 <button onClick={register} type="submit">Register</button>
+            </div>
+        )
+    }
+    else if (sessionUser && registered) {
+        registerButton = (
+            <div>
+                <button onClick={unregister} type="submit">Unregister</button>
             </div>
         )
     }

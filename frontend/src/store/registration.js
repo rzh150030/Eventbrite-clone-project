@@ -25,7 +25,7 @@ export const registerEvent = (event) => async dispatch => {
 
     const response = await csrfFetch("/api/registration/register", {
         method: "POST",
-        body:JSON.stringify({carrer_fair_id, user_id})
+        body:JSON.stringify({career_fair_id, user_id})
     });
 
     if (response.ok) {
@@ -36,6 +36,14 @@ export const registerEvent = (event) => async dispatch => {
 };
 
 //thunk for getting user's registered events
+export const registeredEves = (userId) => {
+    const response = await csrfFetch(`/api/registration/${userId}/registrations`);
+
+    if (response.ok) { //response will contain user with associated registers
+        const data = await response.json();
+        dispatch(getAllRegister(data));
+    }
+}
 
 //thunk for unregistering from event
 
