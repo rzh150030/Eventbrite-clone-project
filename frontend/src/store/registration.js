@@ -36,7 +36,7 @@ export const registerEvent = (event) => async dispatch => {
 };
 
 //thunk for getting user's registered events
-export const registeredEves = (userId) => {
+export const getRegisteredEves = (userId) => {
     const response = await csrfFetch(`/api/registration/${userId}/registrations`);
 
     if (response.ok) { //response will contain user with associated registers

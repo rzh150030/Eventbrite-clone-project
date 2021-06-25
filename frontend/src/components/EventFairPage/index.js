@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import {useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { getEvent, deleteEvent } from "../../store/careerfair";
-import { registerEvent, registeredEves } from "../../store/registration";
+import { registerEvent, getRegisteredEves } from "../../store/registration";
 import "./EventFairPage.css";
 import careerFair from "../../images/RMI-career-fair-0618.jpg";
 
@@ -18,6 +18,7 @@ export default function EventFairPage() {
 
     useEffect(() => { //get event from database to render
         dispatch(getEvent(id));
+        dispatch()
     }, [dispatch, id, registered]);
 
     const convertDate = () => {
