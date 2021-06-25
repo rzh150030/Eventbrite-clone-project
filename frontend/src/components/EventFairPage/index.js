@@ -13,16 +13,16 @@ export default function EventFairPage() {
     const currentEvent = useSelector(state => state.careerFair.currentEvent);
     const sessionUser = useSelector(state => state.session.user);
     const userRegistrations = useSelector(state => Object.values(state.registerFair.registrations));
-    const currentRegistration = userRegistrations.find(element => (element.user_id === sessionUser.id
-        && element.career_fair_id === Number(id))); //see if current event is registered with current user
-    const [registered, setRegistered] = useState(currentRegistration); //behave like a switch for register button
+    const currentRegistration = userRegistrations.find(element => ((element.user_id === sessionUser.id)
+        && (element.career_fair_id === Number(id)))); //see if current event is registered with current user
+    let registered = currentRegistration; //behave like a switch for register button
     let date;
 
-    console.log()
+    console.log(currentRegistration)
     useEffect(() => { //get event from database to render
         dispatch(getEvent(id));
         dispatch(getRegisteredEves(sessionUser.id)); //get user registration to determine which button to show
-    }, [dispatch, id, registered]);
+    }, [dispatch, id]);
 
 
     const convertDate = () => {
@@ -59,17 +59,15 @@ export default function EventFairPage() {
             user_id: sessionUser.id
         };
 
-        let registered = await dispatch(registerEvent(userRegister));
-
-        if (registered) setRegistered(true);
-    }
+        registered = await dispatch(registerEvent(userRegister));
+    };
 
     const unregister= async (e) => {
         e.preventDefault();
         //find the registration that matches user_id and career_fair_id
 
-        setRegistered(false);
-    }
+        registered = false;
+    };
 
     let registerButton;
     if (sessionUser && !registered) {
