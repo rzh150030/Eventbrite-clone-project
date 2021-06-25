@@ -4,6 +4,11 @@ const REGISTER_EVENT = "registerFair/registerEvent";
 const LOAD_REGISTERS = "registerFair/registeredEvents";
 const UNREGISTER_EVENT = "registerFair/UnregisterEvent";
 
+const registerEvent = (registration) => ({
+    type: REGISTER_EVENT,
+    registration
+});
+
 //thunk for registering to event
 
 //thunk for getting user's registered events
