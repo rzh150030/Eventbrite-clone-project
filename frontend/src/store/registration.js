@@ -4,10 +4,16 @@ const REGISTER_EVENT = "registerFair/registerEvent";
 const LOAD_REGISTERS = "registerFair/registeredEvents";
 const UNREGISTER_EVENT = "registerFair/UnregisterEvent";
 
-const registerEvent = (registration) => ({
+const makeRegister = (registration) => ({
     type: REGISTER_EVENT,
     registration
 });
+
+const removeRegister = (deleteId) => ({
+    type: UNREGISTER_EVENT,
+    deleteId //allows for finding which registration to delete from state
+});
+
 
 //thunk for registering to event
 

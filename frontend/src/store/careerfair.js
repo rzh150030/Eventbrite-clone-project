@@ -15,7 +15,7 @@ const makeEvent = (event) => ({
 
 const destroyEvent = (deleteId) => ({
     type: DELETE_EVENT,
-    deleteId
+    deleteId //allows finding which event to remove from state
 });
 
 const grabVenues = (venue) => ({
