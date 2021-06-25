@@ -2,10 +2,12 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import sessionReducer from "./session";
 import fairReducer from "./careerfair";
+import registerReducer from "./registration";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
-  careerFair: fairReducer
+  careerFair: fairReducer,
+  registerFair: registerReducer
 });
 
 let enhancer;
