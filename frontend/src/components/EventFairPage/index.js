@@ -13,7 +13,7 @@ export default function EventFairPage() {
     const sessionUser = useSelector(state => state.session.user);
     let date;
 
-    useEffect(() => {
+    useEffect(() => { //get event from database to render
         dispatch(getEvent(id));
     }, [dispatch, id]);
 
@@ -43,6 +43,14 @@ export default function EventFairPage() {
         )
     }
 
+    let registerButton;
+    if (sessionUser) {
+        registerButton = (
+            <div>
+                <button type="submit">Register</button>
+            </div>
+        )
+    }
 
     return (
         <div className="event-page">
