@@ -18,8 +18,10 @@ export default function EventFairPage() {
 
     useEffect(() => { //get event from database to render
         dispatch(getEvent(id));
-        dispatch()
+        dispatch(getRegisteredEves(sessionUser.id));
     }, [dispatch, id, registered]);
+
+    //If user already registered for event show unregister button
 
     const convertDate = () => {
         let time = Date.parse(currentEvent.date);
@@ -49,11 +51,12 @@ export default function EventFairPage() {
 
     const register = (e) => {
         e.preventDefault();
-
+        console.log("REG")
     }
 
     const unregister= (e) => {
         e.preventDefault();
+        console.log("UNREGES")
     }
 
     let registerButton;
@@ -88,6 +91,7 @@ export default function EventFairPage() {
                 {editDeleteButtons}
             </article>
             <img src={careerFair} alt=""/>
+            {registerButton}
         </div>
     )
 }
