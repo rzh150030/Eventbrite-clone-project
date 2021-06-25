@@ -63,7 +63,7 @@ export default function EventFairPage() {
 
     const unregister= async (e) => {
         e.preventDefault();
-        console.log("UNREGES")
+        
         setRegistered(false);
     }
 
