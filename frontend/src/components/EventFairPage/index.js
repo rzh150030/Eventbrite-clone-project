@@ -13,8 +13,11 @@ export default function EventFairPage() {
     const currentEvent = useSelector(state => state.careerFair.currentEvent);
     const sessionUser = useSelector(state => state.session.user);
     const userRegistrations = useSelector(state => Object.values(state.registerFair.registrations));
-    const [registered, setRegistered] = useState(userRegistrations.find(element => element === id)); //see if user registered for event
+    const currentRegistration = userRegistrations.find(element => element.user_id === id);
+    const [registered, setRegistered] = useState(currentRegistration); //see if user registered for event
     let date;
+    console.log(currentRegistration + "=====")
+    console.log(userRegistrations + "++++++")
 
     useEffect(() => { //get event from database to render
         dispatch(getEvent(id));
@@ -63,7 +66,8 @@ export default function EventFairPage() {
 
     const unregister= async (e) => {
         e.preventDefault();
-        
+        //find the registration that matches user_id and career_fair_id
+
         setRegistered(false);
     }
 
