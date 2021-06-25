@@ -72,6 +72,10 @@ const registerReducer = (state = initialState, action) => {
                 });
             }
             return allRegisterState;
+        case UNREGISTER_EVENT:
+            let deleteRegisterState = {...state};
+            delete deleteRegisterState.registrations[action.deleteId];
+            return deleteRegisterState;
         default:
             return state;
     }
