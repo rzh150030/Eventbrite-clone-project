@@ -18,7 +18,7 @@ export default function EventFairPage() {
 
     useEffect(() => { //get event from database to render
         dispatch(getEvent(id));
-       // dispatch(getRegisteredEves(sessionUser.id)); //get user registration to determine which button to show
+        dispatch(getRegisteredEves(sessionUser.id)); //get user registration to determine which button to show
     }, [dispatch, id, registered]);
 
     //If user already registered for event show unregister button
@@ -53,11 +53,13 @@ export default function EventFairPage() {
     const register = (e) => {
         e.preventDefault();
         console.log("REG")
+        setRegistered(true);
     }
 
     const unregister= (e) => {
         e.preventDefault();
         console.log("UNREGES")
+        setRegistered(false);
     }
 
     let registerButton;
