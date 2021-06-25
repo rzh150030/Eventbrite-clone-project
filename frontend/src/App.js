@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from 'react-router-dom';
+import { getEvents, getVenues } from './store/careerfair';
 import LoginFormPage from './components/LoginFormPage';
 import SignupFormPage from "./components/SignupFormPage";
 import Navigation from './components/Navigation';
@@ -17,6 +18,8 @@ function App() {
   const eventsList = useSelector(state => Object.values(state.careerFair.event));
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
+    dispatch(getEvents());
+    dispatch(getVenues());
   }, [dispatch]);
 
   return (
