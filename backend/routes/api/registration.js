@@ -16,7 +16,7 @@ router.post("/register", requireAuth, asyncHandler(async (req, res) => {
 
     const registration = await Registration.findByPk(register.id, {include: [Career_fair, User]});
 
-    res.json(registration);
+    return res.json(registration);
 }));
 
 //Delete an existing registration
@@ -25,6 +25,7 @@ router.delete("/:id(\\d+)/unregister", requireAuth, asyncHandler(async (req, res
 
     const registration = await Registration.findByPk(id);
     await registration.destroy();
+
     return res.json("Unregistered");
 }));
 
