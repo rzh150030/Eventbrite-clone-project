@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { getVenues } from '../../store/careerfair';
+import { getVenues, getEvents } from '../../store/careerfair';
 import { useDispatch } from 'react-redux';
 import "./HomePage.css";
 
@@ -9,8 +9,9 @@ export default function HomePage() {
     const dispatch = useDispatch();
     const eventsList = useSelector(state => Object.values(state.careerFair.event));
 
-    useEffect(() => { //grab venues for create fair page
+    useEffect(() => { //grab venues and events into state
         dispatch(getVenues());
+        dispatch(getEvents());
     }, [dispatch]);
 
     const convertDate = (date) => {
