@@ -14,6 +14,10 @@ const removeRegister = (deleteId) => ({
     deleteId //allows for finding which registration to delete from state
 });
 
+const getAllRegister = (userRegisters) => ({
+    type: LOAD_REGISTERS,
+    userRegisters
+});
 
 //thunk for registering to event
 
