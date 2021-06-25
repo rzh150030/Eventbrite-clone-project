@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { getEvent, deleteEvent } from "../../store/careerfair";
@@ -11,6 +11,7 @@ export default function EventFairPage() {
     const dispatch = useDispatch();
     const currentEvent = useSelector(state => state.careerFair.currentEvent);
     const sessionUser = useSelector(state => state.session.user);
+    const [registered, setRegistered] = useState(false);
     let date;
 
     useEffect(() => { //get event from database to render
@@ -43,11 +44,16 @@ export default function EventFairPage() {
         )
     }
 
+    const register = (e) => {
+        e.preventDefault();
+        
+    }
+
     let registerButton;
-    if (sessionUser) {
+    if (sessionUser && !registered) {
         registerButton = (
             <div>
-                <button type="submit">Register</button>
+                <button onClick={register} type="submit">Register</button>
             </div>
         )
     }
