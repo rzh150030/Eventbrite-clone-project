@@ -18,10 +18,11 @@ export default function EventFairPage() {
 
     useEffect(() => { //get event from database to render
         dispatch(getEvent(id));
-        dispatch(getRegisteredEves(sessionUser.id));
+       // dispatch(getRegisteredEves(sessionUser.id)); //get user registration to determine which button to show
     }, [dispatch, id, registered]);
 
     //If user already registered for event show unregister button
+
 
     const convertDate = () => {
         let time = Date.parse(currentEvent.date);
@@ -62,14 +63,14 @@ export default function EventFairPage() {
     let registerButton;
     if (sessionUser && !registered) {
         registerButton = (
-            <div>
+            <div className="register-button">
                 <button onClick={register} type="submit">Register</button>
             </div>
         )
     }
     else if (sessionUser && registered) {
         registerButton = (
-            <div>
+            <div className="unregister-button">
                 <button onClick={unregister} type="submit">Unregister</button>
             </div>
         )
