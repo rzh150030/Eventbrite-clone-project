@@ -17,9 +17,8 @@ export default function EventFairPage() {
         && element.career_fair_id === Number(id))); //see if current event is registered with current user
     const [registered, setRegistered] = useState(currentRegistration); //behave like a switch for register button
     let date;
-    console.log(currentRegistration + "=====")
-    console.log(userRegistrations + "++++++")
 
+    console.log()
     useEffect(() => { //get event from database to render
         dispatch(getEvent(id));
         dispatch(getRegisteredEves(sessionUser.id)); //get user registration to determine which button to show
