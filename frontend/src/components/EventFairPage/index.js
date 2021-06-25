@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import {useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { getEvent, deleteEvent } from "../../store/careerfair";
-import { registerEvent, getRegisteredEves } from "../../store/registration";
+import { registerEvent, getRegisteredEves, deleteRegister } from "../../store/registration";
 import "./EventFairPage.css";
 import careerFair from "../../images/RMI-career-fair-0618.jpg";
 
@@ -66,7 +66,7 @@ export default function EventFairPage() {
         e.preventDefault();
 
         //find the registration that matches user_id and career_fair_id
-
+        await dispatch(deleteRegister(currentRegistration.id));
 
         registered = false;
     };

@@ -47,7 +47,9 @@ export const getRegisteredEves = (userId) => async dispatch => {
 
 //thunk for unregistering from event
 export const deleteRegister = (registerId) => async dispatch => {
-    const response = await csrfFetch(`/api/registration/${registerId}/unregister`);
+    const response = await csrfFetch(`/api/registration/${registerId}/unregister`, {
+        method: "DELETE"
+    });
 
     if (response.ok) {
         const data = await response.json(registerId);
