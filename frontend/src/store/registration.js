@@ -20,6 +20,20 @@ const getAllRegister = (userRegisters) => ({
 });
 
 //thunk for registering to event
+export const registerEvent = (event) => async dispatch => {
+    const {career_fair_id, user_id} = event;
+
+    const response = await csrfFetch("/api/registration/register", {
+        method: "POST",
+        body:JSON.stringify({carrer_fair_id, user_id})
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(makeRegister(data));
+        return data;
+    }
+};
 
 //thunk for getting user's registered events
 
