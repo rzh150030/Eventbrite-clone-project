@@ -12,8 +12,8 @@ export default function EventFairPage() {
     const dispatch = useDispatch();
     const currentEvent = useSelector(state => state.careerFair.currentEvent);
     const sessionUser = useSelector(state => state.session.user);
-    const userRegisters = useSelector(state => Object.values(state.registerFair.registrations));
-    const [registered, setRegistered] = useState(userRegisters.find(element => element === id)); //see if user registered for event
+    const userRegistrations = useSelector(state => Object.values(state.registerFair.registrations));
+    const [registered, setRegistered] = useState(userRegistrations.find(element => element === id)); //see if user registered for event
     let date;
 
     useEffect(() => { //get event from database to render
@@ -48,13 +48,20 @@ export default function EventFairPage() {
         )
     }
 
-    const register = (e) => {
+    const register = async (e) => {
         e.preventDefault();
-        console.log("REG")
-        setRegistered(true);
+
+        const userRegister = {
+            career_fair_id: id,
+            user_id: sessionUser.id
+        };
+
+        let registered = await dispatch(registerEvent(userRegister));
+
+        if (registered) setRegistered(true);
     }
 
-    const unregister= (e) => {
+    const unregister= async (e) => {
         e.preventDefault();
         console.log("UNREGES")
         setRegistered(false);
