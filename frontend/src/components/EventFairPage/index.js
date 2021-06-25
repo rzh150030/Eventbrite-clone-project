@@ -12,16 +12,14 @@ export default function EventFairPage() {
     const dispatch = useDispatch();
     const currentEvent = useSelector(state => state.careerFair.currentEvent);
     const sessionUser = useSelector(state => state.session.user);
-    const userRegisters = useSelector(state => state.registerFair.registrations);
-    const [registered, setRegistered] = useState(false);
+    const userRegisters = useSelector(state => Object.values(state.registerFair.registrations));
+    const [registered, setRegistered] = useState(userRegisters.find(element => element === id)); //see if user registered for event
     let date;
 
     useEffect(() => { //get event from database to render
         dispatch(getEvent(id));
         dispatch(getRegisteredEves(sessionUser.id)); //get user registration to determine which button to show
     }, [dispatch, id, registered]);
-
-    //If user already registered for event show unregister button
 
 
     const convertDate = () => {
