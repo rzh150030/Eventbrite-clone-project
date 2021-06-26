@@ -18,7 +18,6 @@ export default function EventFairPage() {
     let registered = currentRegistration; //behave like a switch for register button
     let date;
 
-    console.log(currentRegistration)
     useEffect(() => { //get event from database to render
         dispatch(getEvent(id));
         dispatch(getRegisteredEves(sessionUser.id)); //get user registration to determine which button to show
