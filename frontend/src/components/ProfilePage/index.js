@@ -9,6 +9,7 @@ const ProfilePage = () => {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
     const userEvents = useSelector(state => Object.values(state.careerFair.userEvents));
+    const userRegistrations = useSelector(state => Object.values(state.registerFair.registrations));
 
     useEffect(() => {
         dispatch(hostEvents(sessionUser.id));
