@@ -39,9 +39,12 @@ const ProfilePage = () => {
                         <span>{convertDate(event.date)}</span>
                     </div>
                 ))}
-                {userRegistrations && userRegistrations.map(event => (
-                    <div className="registration-container">
-
+                {userRegistrations && userRegistrations.map(register => (
+                    <div className="registration-container" key={register.id}>
+                        <NavLink to={`/event/${register.career_fair_id}`}>
+                            {register.Career_fair.name}
+                        </NavLink>
+                        <span>{convertDate(register.Career_fair.date)}</span>
                     </div>
                 ))}
             </div>
