@@ -1,4 +1,9 @@
-.hosted-event-container {
+.profile-items {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.hosted-events-container {
     display: grid;
     grid-template-columns: 1fr;
     row-gap: 10px;
