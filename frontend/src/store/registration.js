@@ -36,7 +36,7 @@ export const registerEvent = (event) => async dispatch => {
 };
 
 //thunk for getting user's registered events
-export const registeredEves = (userId) => {
+export const getRegisteredEves = (userId) => async dispatch => {
     const response = await csrfFetch(`/api/registration/${userId}/registrations`);
 
     if (response.ok) { //response will contain user with associated registers
@@ -46,6 +46,17 @@ export const registeredEves = (userId) => {
 }
 
 //thunk for unregistering from event
+export const deleteRegister = (registerId) => async dispatch => {
+    const response = await csrfFetch(`/api/registration/${registerId}/unregister`, {
+        method: "DELETE"
+    });
+
+    if (response.ok) {
+        const data = await response.json(registerId);
+        dispatch(removeRegister(registerId));
+        return data;
+    }
+};
 
 const initialState = {registrations: {}};
 
@@ -57,10 +68,16 @@ const registerReducer = (state = initialState, action) => {
             return newRegisterState;
         case LOAD_REGISTERS:
             let allRegisterState = {...state};
-            action.userRegisters.Registration.forEach(event => {
-                allRegisterState.registrations[event.id] = event;
-            });
+            if (action.userRegisters.Registrations) {
+                action.userRegisters.Registrations.forEach(event => {
+                    allRegisterState.registrations[event.id] = event;
+                });
+            }
             return allRegisterState;
+        case UNREGISTER_EVENT:
+            let deleteRegisterState = {...state};
+            delete deleteRegisterState.registrations[action.deleteId];
+            return deleteRegisterState;
         default:
             return state;
     }

@@ -1,18 +1,11 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { getVenues, getEvents } from '../../store/careerfair';
 import { useDispatch } from 'react-redux';
 import "./HomePage.css";
 
 export default function HomePage() {
-    const dispatch = useDispatch();
     const eventsList = useSelector(state => Object.values(state.careerFair.event));
-
-    useEffect(() => { //grab venues and events into state
-        dispatch(getVenues());
-        dispatch(getEvents());
-    }, [dispatch]);
 
     const convertDate = (date) => {
         let time = Date.parse(date);

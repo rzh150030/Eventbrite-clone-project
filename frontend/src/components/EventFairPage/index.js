@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import {useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { getEvent, deleteEvent } from "../../store/careerfair";
-import { registerEvent, registeredEves } from "../../store/registration";
+import { registerEvent, getRegisteredEves, deleteRegister } from "../../store/registration";
 import "./EventFairPage.css";
 import careerFair from "../../images/RMI-career-fair-0618.jpg";
 
@@ -12,13 +12,17 @@ export default function EventFairPage() {
     const dispatch = useDispatch();
     const currentEvent = useSelector(state => state.careerFair.currentEvent);
     const sessionUser = useSelector(state => state.session.user);
-    const userRegisters = useSelector(state => state.registerFair.registrations);
-    const [registered, setRegistered] = useState(false);
+    const userRegistrations = useSelector(state => Object.values(state.registerFair.registrations));
+    const currentRegistration = userRegistrations.find(element => ((element.user_id === sessionUser.id)
+        && (element.career_fair_id === Number(id)))); //see if current event is registered with current user
+    let registered = currentRegistration; //behave like a switch for register button
     let date;
 
     useEffect(() => { //get event from database to render
         dispatch(getEvent(id));
-    }, [dispatch, id, registered]);
+        dispatch(getRegisteredEves(sessionUser.id)); //get user registration to determine which button to show
+    }, [dispatch, id]);
+
 
     const convertDate = () => {
         let time = Date.parse(currentEvent.date);
@@ -46,26 +50,37 @@ export default function EventFairPage() {
         )
     }
 
-    const register = (e) => {
+    const register = async (e) => {
         e.preventDefault();
 
-    }
+        const userRegister = {
+            career_fair_id: id,
+            user_id: sessionUser.id
+        };
 
-    const unregister= (e) => {
+        registered = await dispatch(registerEvent(userRegister));
+    };
+
+    const unregister= async (e) => {
         e.preventDefault();
-    }
+
+        //find the registration that matches user_id and career_fair_id
+        await dispatch(deleteRegister(currentRegistration.id));
+
+        registered = false;
+    };
 
     let registerButton;
-    if (sessionUser && !registered) {
+    if (sessionUser && !registered && sessionUser.id !== currentEvent.host_id) {
         registerButton = (
-            <div>
+            <div className="register-button">
                 <button onClick={register} type="submit">Register</button>
             </div>
         )
     }
-    else if (sessionUser && registered) {
+    else if (sessionUser && registered && sessionUser.id !== currentEvent.host_id) {
         registerButton = (
-            <div>
+            <div className="unregister-button">
                 <button onClick={unregister} type="submit">Unregister</button>
             </div>
         )
@@ -87,6 +102,7 @@ export default function EventFairPage() {
                 {editDeleteButtons}
             </article>
             <img src={careerFair} alt=""/>
+            {registerButton}
         </div>
     )
 }
