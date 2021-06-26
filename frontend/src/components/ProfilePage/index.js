@@ -31,20 +31,20 @@ const ProfilePage = () => {
                 <span>Registered Events</span>
             </div>
             <div className="profile-items">
-                <div className="hosted-events-container">
+                <div className="events-container">
                     {userEvents && userEvents.map(event => (
-                        <div className="host-event-container" key={event.id}>
-                            <NavLink to={`/event/${event.id}`} className="hosted-event-links">
+                        <div className="single-event-container" key={event.id}>
+                            <NavLink to={`/event/${event.id}`} className="event-links">
                                 {event.name}
                             </NavLink>
                             <span>{convertDate(event.date)}</span>
                         </div>
                     ))}
                 </div>
-                <div className="user-registrations-container">
+                <div className="events-container">
                     {userRegistrations && userRegistrations.map(register => (
-                        <div className="registration-container" key={register.id}>
-                            <NavLink to={`/event/${register.career_fair_id}`}>
+                        <div className="single-event-container" key={register.id}>
+                            <NavLink to={`/event/${register.career_fair_id}`} className="event-links">
                                 {register.Career_fair.name}
                             </NavLink>
                             <span>{convertDate(register.Career_fair.date)}</span>
