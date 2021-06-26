@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Redirect, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { hostEvents } from '../../store/careerfair';
+import { getRegisteredEves } from "../../store/registration";
 import "./ProfilePage.css";
 
 const ProfilePage = () => {
@@ -27,7 +28,6 @@ const ProfilePage = () => {
                 <span>Events Hosted</span>
                 <span>Registered Events</span>
             </div>
-            {/* <span className="user-events-label">Registered Events</span> */}
             <div className="hosted-event-container">
                 {userEvents && userEvents.map(event => (
                     <div className="host-event-container" key={event.id}>
@@ -37,6 +37,7 @@ const ProfilePage = () => {
                         <span>{convertDate(event.date)}</span>
                     </div>
                 ))}
+                {}
             </div>
         </div>
     );
