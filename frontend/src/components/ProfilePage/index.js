@@ -13,6 +13,7 @@ const ProfilePage = () => {
 
     useEffect(() => {
         dispatch(hostEvents(sessionUser.id));
+        dispatch(getRegisteredEves(sessionUser.id));
     }, [dispatch, sessionUser.id]);
 
     const convertDate = (date) => {
