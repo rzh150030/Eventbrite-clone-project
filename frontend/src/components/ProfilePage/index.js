@@ -10,7 +10,7 @@ const ProfilePage = () => {
     const sessionUser = useSelector(state => state.session.user);
     const userEvents = useSelector(state => Object.values(state.careerFair.userEvents));
     const userRegistrations = useSelector(state => Object.values(state.registerFair.registrations));
-
+    console.log(userRegistrations)
     useEffect(() => {
         dispatch(hostEvents(sessionUser.id));
         dispatch(getRegisteredEves(sessionUser.id));
@@ -39,7 +39,11 @@ const ProfilePage = () => {
                         <span>{convertDate(event.date)}</span>
                     </div>
                 ))}
-                {}
+                {userRegistrations && userRegistrations.map(event => (
+                    <div className="registration-container">
+
+                    </div>
+                ))}
             </div>
         </div>
     );
