@@ -20,8 +20,10 @@ export default function EventFairPage() {
 
     useEffect(() => { //get event from database to render
         dispatch(getEvent(id));
-        dispatch(getRegisteredEves(sessionUser.id)); //get user registration to determine which button to show
-    }, [dispatch, id, sessionUser.id]);
+        if (sessionUser) {
+            dispatch(getRegisteredEves(sessionUser.id)); //get user registration to determine which button to show
+        }
+    }, [dispatch, id]);
 
 
     const convertDate = () => {
