@@ -11,7 +11,14 @@ const validateFair = [
     check("name")
         .exists({Checkfalsy: true})
         .notEmpty()
-        .withMessage("Please provide a name for the event"),
+        .withMessage("Please provide a name for the event")
+        /* .custom(value => {
+            console.log(Career_fair.findOne({where: {name: value}}))
+            return Career_fair.findOne({where: {name: value}})
+                .then(() => {
+                    Promise.reject("Name already taken");
+                })
+        }) */,
     check("date")
         .exists({Checkfalsy: true})
         .notEmpty()
