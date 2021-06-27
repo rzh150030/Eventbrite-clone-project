@@ -54,7 +54,7 @@ export default function CreateFairPage() {
             if (newEvent) history.push(`/`);
         } catch (error) {
             const data = await error.json();
-            console.log(data)
+  
             if (data && data.errors) setErrors(data.errors);
         }
     }
