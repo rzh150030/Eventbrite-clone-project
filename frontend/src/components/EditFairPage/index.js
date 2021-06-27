@@ -44,13 +44,15 @@ export default function EditFairPage() {
         };
 
         setErrors([]);
-        let newEvent = await dispatch(updateEventFair(event, id));
-        /* .catch(async (res) => {
-            const data = await res.json()
-            if (data && data.errors) setErrors(data.errors)
-        }); */
+        try {
+            let newEvent = await dispatch(updateEventFair(event, id));
 
-        if (newEvent) history.push(`/event/${id}`);
+            if (newEvent) history.push(`/event/${id}`);
+        } catch (error) {
+            const data = await error.json();
+
+            if (data && data.errors) setErrors(data.errors);
+        }
     }
 
     return (
