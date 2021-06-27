@@ -43,14 +43,14 @@ export default function CreateFairPage() {
         };
 
         setErrors([]);
-        let newEvent = await dispatch(postEventFair(event))
-        /* .catch(async (res) => {
-            const data = await res.json()
-            if (data && data.errors) setErrors(data.errors) //need to deal with client side error handling
-        }); */
+        try {
+            let newEvent = await dispatch(postEventFair(event));
 
-        if (newEvent) {
-            history.push(`/`);
+            if (newEvent) history.push(`/`);
+        } catch (error) {
+            const data = await error.json();
+
+            if (data && data.errors) setErrors(data.errors);
         }
     }
 

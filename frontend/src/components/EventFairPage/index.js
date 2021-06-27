@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { getEvent, deleteEvent } from "../../store/careerfair";
@@ -13,15 +13,21 @@ export default function EventFairPage() {
     const currentEvent = useSelector(state => state.careerFair.currentEvent);
     const sessionUser = useSelector(state => state.session.user);
     const userRegistrations = useSelector(state => Object.values(state.registerFair.registrations));
-    const currentRegistration = userRegistrations.find(element => ((element.user_id === sessionUser.id)
-        && (element.career_fair_id === Number(id)))); //see if current event is registered with current user
+    let currentRegistration;
+    if (sessionUser) {
+        currentRegistration = userRegistrations.find(element => ((element.user_id === sessionUser.id)
+            && (element.career_fair_id === Number(id)))); //see if current event is registered with current logged user
+    }
+
     let registered = currentRegistration; //behave like a switch for register button
     let date;
 
     useEffect(() => { //get event from database to render
         dispatch(getEvent(id));
-        dispatch(getRegisteredEves(sessionUser.id)); //get user registration to determine which button to show
-    }, [dispatch, id]);
+        if (sessionUser) {
+            dispatch(getRegisteredEves(sessionUser.id)); //get logged user registration to determine which button to show
+        }
+    }, [dispatch, id, sessionUser]);
 
 
     const convertDate = () => {

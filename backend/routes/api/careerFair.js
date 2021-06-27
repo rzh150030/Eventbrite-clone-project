@@ -11,7 +11,14 @@ const validateFair = [
     check("name")
         .exists({Checkfalsy: true})
         .notEmpty()
-        .withMessage("Please provide a name for the event"),
+        .withMessage("Please provide a name for the event")
+        /* .custom(value => {
+            console.log(Career_fair.findOne({where: {name: value}}))
+            return Career_fair.findOne({where: {name: value}})
+                .then(() => {
+                    Promise.reject("Name already taken");
+                })
+        }) */,
     check("date")
         .exists({Checkfalsy: true})
         .notEmpty()
@@ -19,7 +26,9 @@ const validateFair = [
     check("capacity")
         .exists({Checkfalsy: true})
         .notEmpty()
-        .withMessage("Please enter a capacity limit for the event"),
+        .withMessage("Please enter a capacity limit for the event")
+        .isInt()
+        .withMessage("Capacity must be a number"),
     handleValidationErrors,
 ];
 
@@ -83,7 +92,7 @@ router.delete("/:id(\\d+)/deleteEvent", requireAuth, asyncHandler(async (req, re
 }));
 
 //Grab venues to select what venues to use
-router.get("/venues", requireAuth, asyncHandler(async (req, res) => {
+router.get("/venues", asyncHandler(async (req, res) => {
     const venues = await Venue.findAll();
     return res.json(venues);
 }));
