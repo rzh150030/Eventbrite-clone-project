@@ -83,7 +83,7 @@ router.delete("/:id(\\d+)/deleteEvent", requireAuth, asyncHandler(async (req, re
 }));
 
 //Grab venues to select what venues to use
-router.get("/venues", requireAuth, asyncHandler(async (req, res) => {
+router.get("/venues", asyncHandler(async (req, res) => {
     const venues = await Venue.findAll();
     return res.json(venues);
 }));
