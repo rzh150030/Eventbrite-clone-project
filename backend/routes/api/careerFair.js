@@ -19,7 +19,9 @@ const validateFair = [
     check("capacity")
         .exists({Checkfalsy: true})
         .notEmpty()
-        .withMessage("Please enter a capacity limit for the event"),
+        .withMessage("Please enter a capacity limit for the event")
+        .isInt()
+        .withMessage("Capacity must be a number"),
     handleValidationErrors,
 ];
 
