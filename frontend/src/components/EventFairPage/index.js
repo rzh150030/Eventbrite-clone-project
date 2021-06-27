@@ -23,7 +23,7 @@ export default function EventFairPage() {
         if (sessionUser) {
             dispatch(getRegisteredEves(sessionUser.id)); //get user registration to determine which button to show
         }
-    }, [dispatch, id]);
+    }, [dispatch, id, sessionUser]);
 
 
     const convertDate = () => {
