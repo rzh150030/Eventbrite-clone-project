@@ -1,6 +1,10 @@
 # IT Fairs For Hires
 [Live Link](https://it-fairs-for-hires.herokuapp.com/)
 
+## Index Links
+- [Feature List](https://github.com/rzh150030/Eventbrite-clone-project/wiki/MVP-Feature-List)
+- [Database Schema](https://github.com/rzh150030/Eventbrite-clone-project/wiki/Database-Schema)
+
 ## Overview
 IT Fairs For Hires is a React, Express project inspired by Eventbrite that allows users to create job events at certain locations and time as well as register for the events. 
 
