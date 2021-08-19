@@ -1,5 +1,6 @@
 # IT Fairs For Hires
 *Developed by Richard Huang*
+
 [Live Link](https://it-fairs-for-hires.herokuapp.com/)
 
 ## Index Links
