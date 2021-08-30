@@ -15,7 +15,7 @@ export default function HomePage() {
     return (
         <div className="home-page">
             <div className="welcome-message-container">
-                <span>Welcome to IT Fairs for Hires</span>
+                <span>List of Upcoming Events</span>
             </div>
             <div className="home-content-container">
                 {eventsList.map(event => (
