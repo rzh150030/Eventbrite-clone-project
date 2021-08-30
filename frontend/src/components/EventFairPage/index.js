@@ -107,7 +107,7 @@ export default function EventFairPage() {
                 </p>
                 {editDeleteButtons}
             </article>
-            <img src={careerFair} alt=""/>
+            <img src={careerFair} alt="fair"/>
             {registerButton}
         </div>
     )
