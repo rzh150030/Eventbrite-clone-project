@@ -5,7 +5,6 @@
     margin-top: 20px;
     column-gap: 10px;
     row-gap: 10px;
-
 }
 
 .home-links {
@@ -37,4 +36,9 @@
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-weight: 400;
     font-size: 20px;
+}
+
+.home-page {
+    padding-bottom: 310px;
+    height: auto;
 }
