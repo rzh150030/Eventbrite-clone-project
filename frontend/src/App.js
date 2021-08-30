@@ -55,6 +55,9 @@ function App() {
           ))}
         </Switch>
       )}
+      <footer id="about-links-footer">
+            
+      </footer>
     </>
 
   );
