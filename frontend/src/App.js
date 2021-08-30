@@ -10,6 +10,7 @@ import CreateFairPage from "./components/CreateFairPage";
 import HomePage from "./components/HomePage";
 import EditFairPage from "./components/EditFairPage";
 import EventFairPage from "./components/EventFairPage";
+import SplashPage from './components/SplashPage';
 import * as sessionActions from "./store/session";
 
 function App() {
@@ -29,6 +30,9 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path="/">
+            <SplashPage />
+          </Route>
+          <Route exact path="/upcomingEvents">
             <HomePage />
           </Route>
           <Route path="/login">
