@@ -10,7 +10,12 @@
 
 #splash-message-container {
     background-color: #b34700;
+    display: flex;
     position: absolute;
-    top: 20%;
-    left: 20%;
+    top: 19%;
+    left: 19%;
+    height: 100px;
+    width: 400px;
+    justify-content: center;
+    align-items: center;
 }
