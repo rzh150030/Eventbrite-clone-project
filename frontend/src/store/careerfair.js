@@ -144,7 +144,7 @@ const fairReducer = (state = initialState, action) => {
             let count = 0;
             action.events.forEach((event) => { //load all events and 3 events for splash page
                 allEventState.event[event.id] = event;
-                if (count < 3) {
+                if (count < 4) {
                     allEventState.splashEvents.push(event);
                     count++;
                 }
