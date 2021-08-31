@@ -1,10 +1,8 @@
-import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from 'react-router-dom';
 import splashImage from "../../images/cascade-job-fair-1.jpg";
 
 export default function SplashPage() {
-    const eventsList = useSelector(state => Object.values(state.careerFair.event));
     const recentEvents = useSelector(state => state.careerFair.splashEvents);
 
     const convertDate = (date) => {
@@ -20,11 +18,11 @@ export default function SplashPage() {
                 <div id="splash-message-container">
                     <p>Go get a job!</p>
                 </div>
-                <button>Find a job fair</button>
+                <button>Get started</button>
             </div>
-            <span>Most recent events</span>
+            <span>Most recent events added</span>
             <div className="splash-recent-events">
-                {/* {recentEvents.map(event => (
+                {recentEvents.map(event => (
                     <div key={event.id}>
                         <NavLink to={`/event/${event.id}`}>
                             {event.name}
@@ -32,7 +30,7 @@ export default function SplashPage() {
                         <span>{convertDate(event.date)}</span>
                         <i className="fas fa-user-tie" >{" " + event.User?.username}</i>
                     </div>
-                ))} */}
+                ))}
             </div>
         </div>
     );
