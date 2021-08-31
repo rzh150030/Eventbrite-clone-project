@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { NavLink } from 'react-router-dom';
 import splashImage from "../../images/cascade-job-fair-1.jpg";
+import "./SplashPage.css";
 
 export default function SplashPage() {
     const recentEvents = useSelector(state => state.careerFair.splashEvents);
