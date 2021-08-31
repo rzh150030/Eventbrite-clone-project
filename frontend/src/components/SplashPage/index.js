@@ -19,7 +19,7 @@ export default function SplashPage() {
                 <div id="splash-message-container">
                     <p id="splash-text">Find your future employers</p>
                 </div>
-                <button>Get started</button>
+                <button id="start-button">Get started</button>
             </div>
             <span>Most recent events added</span>
             <div className="splash-recent-events">

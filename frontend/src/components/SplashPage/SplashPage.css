@@ -25,3 +25,15 @@
     font-size: 2.5em;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
+
+#start-button {
+    position: absolute;
+    background-color: #00802b;
+    color: white;
+    top: 40%;
+    left: 19%;
+    height: 50px;
+    width: 210px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 1em;
+}
