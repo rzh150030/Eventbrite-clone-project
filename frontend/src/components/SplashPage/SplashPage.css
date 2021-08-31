@@ -46,3 +46,13 @@
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 1em;
 }
+
+#recent-events-title {
+    display: flex;
+    justify-content: center;
+    color: #b34700;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 40px;
+}
