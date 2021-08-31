@@ -17,7 +17,7 @@ export default function SplashPage() {
             <div className="splash-page-image-layer">
                 <img id="splash-image" src={splashImage} alt="job fair"/>
                 <div id="splash-message-container">
-                    <p>Find your future employers</p>
+                    <p id="splash-text">Find your future employers</p>
                 </div>
                 <button>Get started</button>
             </div>
