@@ -32,11 +32,11 @@ export default function SplashPage() {
                 </div>
                 <button id="start-button" onClick={loginUser}>Get started</button>
             </div>
-            <span>Most recent events added</span>
+            <span id="recent-events-title">Most recent events added</span>
             <div className="splash-recent-events">
                 {recentEvents.map(event => (
-                    <div key={event.id}>
-                        <NavLink to={`/event/${event.id}`}>
+                    <div key={event.id} className="event-container">
+                        <NavLink to={`/event/${event.id}`} className="home-links">
                             {event.name}
                         </NavLink>
                         <span>{convertDate(event.date)}</span>
