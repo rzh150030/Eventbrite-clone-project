@@ -7,12 +7,6 @@ export default function SplashPage() {
     const eventsList = useSelector(state => Object.values(state.careerFair.event));
     const recentEvents = useSelector(state => state.careerFair.splashEvents);
 
-    // useEffect(() => {   //grab 3 most recent events
-    //     for (let i = 0; i < 3; i++) {
-    //         recentEvents.push(eventsList[i]);
-    //     }
-    // }, [eventsList, recentEvents]);
-
     const convertDate = (date) => {
         let time = Date.parse(date);
         let formatDate = new Date(time);
