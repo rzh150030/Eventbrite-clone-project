@@ -1,10 +1,16 @@
 import React from 'react';
+import { Redirect } from 'react-router';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import "./HomePage.css";
 
 export default function HomePage() {
     const eventsList = useSelector(state => Object.values(state.careerFair.event));
+    const sessionUser = useSelector(state => state.session.user);
+
+    if (!sessionUser) {
+        return <Redirect to="/login" />
+    }
 
     const convertDate = (date) => {
         let time = Date.parse(date);

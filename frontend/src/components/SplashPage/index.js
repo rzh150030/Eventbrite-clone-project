@@ -5,6 +5,7 @@ import "./SplashPage.css";
 
 export default function SplashPage() {
     const recentEvents = useSelector(state => state.careerFair.splashEvents);
+    const sessionUser = useSelector(state => state.session.user)
     const history = useHistory();
 
     const convertDate = (date) => {
@@ -14,7 +15,12 @@ export default function SplashPage() {
     };
 
     const loginUser = () => {
-        history.push("/login");
+        if (sessionUser) {
+            history.push("/upcomingEvents");
+        }
+        else {
+            history.push("/login");
+        }
     };
 
     return (
