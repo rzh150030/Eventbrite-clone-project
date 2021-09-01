@@ -49,9 +49,9 @@ export default function EventFairPage() {
     let editDeleteButtons;
     if (sessionUser && sessionUser.id === currentEvent.host_id) {
         editDeleteButtons = (
-            <div>
-                <button onClick={editButton} type="submit">Edit</button>
-                <button onClick={deletion}>Delete</button>
+            <div className="edit-delete-event-buttons">
+                <button onClick={editButton} type="submit" id="edit-event-button">Edit</button>
+                <button onClick={deletion} id="delete-event-button">Delete</button>
             </div>
         )
     }
@@ -86,7 +86,7 @@ export default function EventFairPage() {
     }
     else if (sessionUser && registered && sessionUser.id !== currentEvent.host_id) {
         registerButton = (
-            <div className="unregister-button">
+            <div className="register-button">
                 <button onClick={unregister} type="submit">Unregister</button>
             </div>
         )
