@@ -1,5 +1,11 @@
 .event-page {
-    display: grid;
-    grid-template-columns: 50% 50%;
+    display: flex;
+    justify-content: space-around;
+    justify-items: center;
     padding-bottom: 12%;
 }
+
+/* .event-article {
+    margin-left: 15%;
+
+} */

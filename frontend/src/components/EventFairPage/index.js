@@ -106,9 +106,10 @@ export default function EventFairPage() {
                     {currentEvent?.Venue?.city}, {currentEvent?.Venue?.country}, {currentEvent?.Venue?.zipCode}
                 </p>
                 {editDeleteButtons}
+                {registerButton}
             </article>
             <img src={careerFair} alt="fair"/>
-            {registerButton}
+
         </div>
     )
 }
