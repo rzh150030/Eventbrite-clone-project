@@ -33,6 +33,16 @@
     background-color: #00802b;
 }
 
+#unregister-button {
+    border: solid red;
+    color: red;
+}
+
+#unregister-button:hover {
+    color: white;
+    background-color: red;
+}
+
 #edit-event-button {
     font-family: Georgia, 'Times New Roman', Times, serif;
     border: solid #b34700;
