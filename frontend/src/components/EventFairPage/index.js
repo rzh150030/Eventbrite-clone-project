@@ -79,15 +79,15 @@ export default function EventFairPage() {
     let registerButton;
     if (sessionUser && !registered && sessionUser.id !== currentEvent.host_id) {
         registerButton = (
-            <div className="register-button">
-                <button onClick={register} type="submit">Register</button>
+            <div className="register-button-container">
+                <button onClick={register} type="submit" className="registration-button">Register</button>
             </div>
         )
     }
     else if (sessionUser && registered && sessionUser.id !== currentEvent.host_id) {
         registerButton = (
-            <div className="register-button">
-                <button onClick={unregister} type="submit">Unregister</button>
+            <div className="register-button-container">
+                <button onClick={unregister} type="submit" className="registration-button" id="unregister-button">Unregister</button>
             </div>
         )
     }
