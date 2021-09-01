@@ -54,6 +54,7 @@ export const postEventFair = (event) => async dispatch => {
     if (response.ok) {
         const data = await response.json();
         dispatch(makeEvent(data));
+        dispatch(getEvents());
         return data;
     }
 };
@@ -111,6 +112,7 @@ export const deleteEvent = (eventId) => async dispatch => {
     if (response.ok) { //delete an event in event state and currentEvent
         const data = await response.json();
         dispatch(destroyEvent(eventId));
+        dispatch(getEvents());
         return data;
     }
 };
@@ -142,7 +144,8 @@ const fairReducer = (state = initialState, action) => {
         case LOAD_ALL_EVENT:
             let allEventState = {...state};
             let count = 0;
-            action.events.forEach((event) => { //load all events and 3 events for splash page
+            allEventState.splashEvents = [];
+            action.events.forEach((event) => { //load all events and 4 events for splash page
                 allEventState.event[event.id] = event;
                 if (count < 4) {
                     allEventState.splashEvents.push(event);
