@@ -44,9 +44,7 @@ const Navigation = ({isLoaded}) => {
     return (
         <>
             <div className="navbar">
-                <div>
-                    <NavLink exact to="/" className="home">IT Fairs for Hires</NavLink>
-                </div>
+                <NavLink exact to="/" className="home">IT Fairs for Hires</NavLink>
                 <NavLink to="/createfair" className="create-fair">Create a Career Fair</NavLink>
                 {isLoaded && sessionLinks}
             </div>
