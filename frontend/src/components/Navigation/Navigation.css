@@ -29,9 +29,18 @@ button {
 
 .fa-user {
     display: flex;
+    border: solid #00802b;
     color: #00802b;
+    transition: all 0.2s;
     align-items: center;
     justify-content: center;
+    height: 1.8em;
+    width: 5em;
+}
+
+.fa-user:hover {
+    background-color: #00802b;
+    color: white;
 }
 
 .session-button {
@@ -44,9 +53,24 @@ button {
     color: #b34700;
     text-decoration: none;
     background-color: white;
+    margin-top: 18px;
 }
 
 .session-button:hover {
     color: white;
     background-color: #b34700;
 }
+
+/* #profile-page-button {
+    border: solid #00802b;
+    box-sizing: border-box;
+    border-radius: 0.12em;
+    font-weight: bold;
+    transition: all 0.2s;
+    text-decoration: none;
+    background-color: white;
+}
+
+#profile-page-button:hover {
+    background-color: #00802b;
+} */
