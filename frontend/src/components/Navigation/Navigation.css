@@ -35,6 +35,18 @@ button {
 }
 
 .session-button {
-    color: #b34700;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    border: solid #b34700;
+    box-sizing: border-box;
+    border-radius: 0.12em;
     font-weight: bold;
+    transition: all 0.2s;
+    color: #b34700;
+    text-decoration: none;
+    background-color: white;
+}
+
+.session-button:hover {
+    color: white;
+    background-color: #b34700;
 }
