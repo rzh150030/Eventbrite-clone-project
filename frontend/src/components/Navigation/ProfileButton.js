@@ -1,5 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router";
+import './Navigation.css';
 
 const ProfileButton = () => { //go to user profile page
     const history = useHistory();
@@ -9,11 +10,8 @@ const ProfileButton = () => { //go to user profile page
     }
 
     return (
-        <>
-            <button onClick={goToProfile}>
-                <i className="fas fa-user"></i>
-            </button>
-        </>
+        <i className="fas fa-user" onClick={goToProfile}>
+        </i>
     );
 }
 

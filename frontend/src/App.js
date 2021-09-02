@@ -10,6 +10,7 @@ import CreateFairPage from "./components/CreateFairPage";
 import HomePage from "./components/HomePage";
 import EditFairPage from "./components/EditFairPage";
 import EventFairPage from "./components/EventFairPage";
+import SplashPage from './components/SplashPage';
 import * as sessionActions from "./store/session";
 
 function App() {
@@ -29,6 +30,9 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path="/">
+            <SplashPage />
+          </Route>
+          <Route exact path="/upcomingEvents">
             <HomePage />
           </Route>
           <Route path="/login">
@@ -55,6 +59,12 @@ function App() {
           ))}
         </Switch>
       )}
+      <footer id="about-links-footer">
+        Developed by: Richard Huang
+        <a className="footer-links" href="https://www.linkedin.com/in/richard-huang-0a6658207/">LinkedIn</a>
+        <a className="footer-links" href="https://github.com/rzh150030">Github</a>
+        <a className="footer-links" href="https://github.com/rzh150030/Eventbrite-clone-project">Repo</a>
+      </footer>
     </>
 
   );

@@ -77,7 +77,7 @@ router.get("/:id(\\d+)", asyncHandler(async (req, res) => {
 
 //Get all event fair to read
 router.get("/allEvent", asyncHandler(async (req, res) => {
-    const event = await Career_fair.findAll({include: User});
+    const event = await Career_fair.findAll({include: User, order:[["createdAt", "DESC"]]});
 
     return res.json(event);
 }));

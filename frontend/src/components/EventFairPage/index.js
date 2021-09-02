@@ -49,9 +49,9 @@ export default function EventFairPage() {
     let editDeleteButtons;
     if (sessionUser && sessionUser.id === currentEvent.host_id) {
         editDeleteButtons = (
-            <div>
-                <button onClick={editButton} type="submit">Edit</button>
-                <button onClick={deletion}>Delete</button>
+            <div className="edit-delete-event-buttons">
+                <button onClick={editButton} type="submit" id="edit-event-button">Edit</button>
+                <button onClick={deletion} id="delete-event-button">Delete</button>
             </div>
         )
     }
@@ -79,15 +79,15 @@ export default function EventFairPage() {
     let registerButton;
     if (sessionUser && !registered && sessionUser.id !== currentEvent.host_id) {
         registerButton = (
-            <div className="register-button">
-                <button onClick={register} type="submit">Register</button>
+            <div className="register-button-container">
+                <button onClick={register} type="submit" className="registration-button">Register</button>
             </div>
         )
     }
     else if (sessionUser && registered && sessionUser.id !== currentEvent.host_id) {
         registerButton = (
-            <div className="unregister-button">
-                <button onClick={unregister} type="submit">Unregister</button>
+            <div className="register-button-container">
+                <button onClick={unregister} type="submit" className="registration-button" id="unregister-button">Unregister</button>
             </div>
         )
     }
@@ -106,9 +106,10 @@ export default function EventFairPage() {
                     {currentEvent?.Venue?.city}, {currentEvent?.Venue?.country}, {currentEvent?.Venue?.zipCode}
                 </p>
                 {editDeleteButtons}
+                {registerButton}
             </article>
-            <img src={careerFair} alt=""/>
-            {registerButton}
+            <img src={careerFair} alt="fair"/>
+
         </div>
     )
 }

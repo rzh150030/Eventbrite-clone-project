@@ -1,5 +1,82 @@
 .event-page {
-    display: grid;
-    grid-template-columns: 50% 50%;
+    display: flex;
+    justify-content: space-around;
+    justify-items: center;
+    padding-bottom: 12%;
 }
 
+.event-article {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.edit-delete-event-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.registration-button {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    border: solid #00802b;
+    box-sizing: border-box;
+    border-radius: 0.12em;
+    font-weight: bold;
+    width: 10em;
+    height: 4em;
+    transition: all 0.2s;
+    color: #00802b;
+    text-decoration: none;
+    background-color: white;
+}
+
+.registration-button:hover {
+    color: white;
+    background-color: #00802b;
+}
+
+#unregister-button {
+    border: solid red;
+    color: red;
+}
+
+#unregister-button:hover {
+    color: white;
+    background-color: red;
+}
+
+#edit-event-button {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    border: solid #b34700;
+    box-sizing: border-box;
+    border-radius: 0.12em;
+    font-weight: bold;
+    width: 10em;
+    height: 4em;
+    transition: all 0.2s;
+    color: #b34700;
+    text-decoration: none;
+    background-color: white;
+}
+
+#edit-event-button:hover {
+    color: white;
+    background-color: #b34700;
+}
+
+#delete-event-button {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    border: solid #b34700;
+    box-sizing: border-box;
+    border-radius: 0.12em;
+    font-weight: bold;
+    width: 10em;
+    height: 4em;
+    transition: all 0.2s;
+    color: #b34700;
+    text-decoration: none;
+    background-color: white;
+}
+
+#delete-event-button:hover {
+    color: white;
+    background-color: #b34700;
+}

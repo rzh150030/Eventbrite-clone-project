@@ -41,7 +41,7 @@ const editEvent = (event) => ({
 const getUserEvents = (userHost) => ({
     type: USER_EVENTS,
     userHost
-})
+});
 
 //thunk for creating a new event fair
 export const postEventFair = (event) => async dispatch => {
@@ -54,6 +54,7 @@ export const postEventFair = (event) => async dispatch => {
     if (response.ok) {
         const data = await response.json();
         dispatch(makeEvent(data));
+        dispatch(getEvents());
         return data;
     }
 };
@@ -111,6 +112,7 @@ export const deleteEvent = (eventId) => async dispatch => {
     if (response.ok) { //delete an event in event state and currentEvent
         const data = await response.json();
         dispatch(destroyEvent(eventId));
+        dispatch(getEvents());
         return data;
     }
 };
@@ -125,7 +127,7 @@ export const hostEvents = (userId) => async dispatch => {
     }
 };
 
-const initialState = {venues: {}, event: {}, currentEvent: {}, userEvents: {}};
+const initialState = {venues: {}, event: {}, currentEvent: {}, userEvents: {}, splashEvents: []};
 
 const fairReducer = (state = initialState, action) => {
     switch(action.type) {
@@ -136,13 +138,19 @@ const fairReducer = (state = initialState, action) => {
         case GRAB_VENUES:
             let newState = {...state};
             action.venue.forEach((venue) => {
-                newState.venues[venue.id] = venue
+                newState.venues[venue.id] = venue;
             });
             return newState;
         case LOAD_ALL_EVENT:
             let allEventState = {...state};
-            action.events.forEach((event) => {
-                allEventState.event[event.id] = event
+            let count = 0;
+            allEventState.splashEvents = [];
+            action.events.forEach((event) => { //load all events and 4 events for splash page
+                allEventState.event[event.id] = event;
+                if (count < 4) {
+                    allEventState.splashEvents.push(event);
+                    count++;
+                }
             });
             return allEventState;
         case LOAD_EVENT:
