@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     Career_fair.belongsToMany(models.Job_title, {through: "Event_title", otherKey: "job_title_id", foreignKey: "fair_id"});
     Career_fair.belongsTo(models.User, {foreignKey: "host_id"});
     Career_fair.belongsTo(models.Venue, {foreignKey: "venue_id"});
-    Career_fair.hasMany(models.Registration, {foreignKey: "career_fair_id"});
+    Career_fair.hasMany(models.Registration, {foreignKey: "career_fair_id", onDelete: "cascade", hooks: true});
   };
   return Career_fair;
 };

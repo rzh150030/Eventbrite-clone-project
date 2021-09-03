@@ -46,7 +46,7 @@ export default function CreateFairPage() {
         try {
             let newEvent = await dispatch(postEventFair(event));
 
-            if (newEvent) history.push(`/`);
+            if (newEvent) history.push(`/upcomingEvents`);
         } catch (error) {
             const data = await error.json();
 

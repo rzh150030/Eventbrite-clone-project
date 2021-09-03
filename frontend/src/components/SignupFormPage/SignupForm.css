@@ -5,6 +5,7 @@
     grid-template-columns: 500px;
     grid-template-rows: 1fr 32px 32px 32px 32px 32px 32px 32px 32px 70px;
     justify-content: center;
+    padding-bottom: 15%;
 }
 
 .labels {
@@ -12,7 +13,9 @@
 }
 
 .submit-signup {
-    margin-top: 15px;
+    margin-top: 30px;
     justify-self: center;
-    width: 50%;
+    width: 47%;
+    height: 40px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }

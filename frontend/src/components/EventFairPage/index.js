@@ -39,7 +39,7 @@ export default function EventFairPage() {
     const deletion = async () => {
         let deleted = await dispatch(deleteEvent(currentEvent.id));
 
-        if (deleted) history.push("/");
+        if (deleted) history.push("/upcomingEvents");
     }
 
     const editButton = () => {
