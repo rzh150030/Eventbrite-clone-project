@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Redirect } from 'react-router';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { clearRegState } from "../../store/registration";
 import "./HomePage.css";
 
 export default function HomePage() {
+    const dispatch = useDispatch();
     const eventsList = useSelector(state => Object.values(state.careerFair.event));
     const sessionUser = useSelector(state => state.session.user);
+
+    useEffect(() => {
+        dispatch(clearRegState());
+    }, [dispatch]);
 
     if (!sessionUser) {
         return <Redirect to="/login" />

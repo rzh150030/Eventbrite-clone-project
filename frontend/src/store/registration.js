@@ -3,6 +3,7 @@ import { csrfFetch } from './csrf';
 const REGISTER_EVENT = "registerFair/registerEvent";
 const LOAD_REGISTERS = "registerFair/registeredEvents";
 const UNREGISTER_EVENT = "registerFair/UnregisterEvent";
+const CLEAR_REGISTERS = "registerFair/clearRegisters";
 
 const makeRegister = (registration) => ({
     type: REGISTER_EVENT,
@@ -17,6 +18,10 @@ const removeRegister = (deleteId) => ({
 const getAllRegister = (userRegisters) => ({
     type: LOAD_REGISTERS,
     userRegisters
+});
+
+export const clearRegState = () => ({
+    type: CLEAR_REGISTERS,
 });
 
 //thunk for registering to event
@@ -78,6 +83,8 @@ const registerReducer = (state = initialState, action) => {
             let deleteRegisterState = {...state};
             delete deleteRegisterState.registrations[action.deleteId];
             return deleteRegisterState;
+        case CLEAR_REGISTERS:
+            return {registrations: {}};
         default:
             return state;
     }
